@@ -1,0 +1,4 @@
+[
+  {"comment":"German",  "text":"Deutsch", "value":"ger", "checked":true},
+  {"comment":"English", "text":"English", "value":"en",  "checked":false}
+]

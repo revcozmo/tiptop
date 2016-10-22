@@ -1,0 +1,23 @@
+{
+  "txt" : [
+    "Wie funktioniert's?",
+    "Tippe auf die farbigen Knöpfe, um ihre Farbe zu ändern, und versuche alle gleich zu färben.",
+    "Aufgepasst. Das Tippen auf einen Knopf wechselt auch die Farbe seiner Nachbarn.",
+
+    "Über die App",
+    "Autor",
+    "Version",
+    "Dank an",
+    "Wenn du meine App kommentieren möchtest oder noch eine Idee für mich hast, schreib' mir eine E-Mail an",
+
+
+    "Einstellungen",
+    "Farbenblind"
+  ],
+
+  "diff" : [
+    "Leicht",
+    "Normal",
+    "Schwer"
+  ]
+}

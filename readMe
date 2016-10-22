@@ -1,0 +1,14 @@
+/*********************************************************************************************
+  Docs Local Notifications        :  http://ionicframework.com/docs/v2/native/Local%20Notifications/
+  Tutorial on Local Notification  :  https://www.thepolyglotdeveloper.com/2016/07/using-local-notifications-ionic-2-mobile-app/
+  Docs Push Notifications         :  http://ionicframework.com/docs/v2/native/push/
+  IMPORTANT
+    Create Project with Ionic2 and typescript
+    ionic start myApp blank --v2 --typescript
+ *********************************************************************************************/
+app.factory('notes', function() {
+  // Interface
+    return {
+
+    }
+})

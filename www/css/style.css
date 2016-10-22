@@ -1,0 +1,23 @@
+.screen {
+  padding         : 5px 5px 5px 5px !important;
+  background-color: #00a01a;
+}
+.heading {
+  text-align: center !important;
+  color     : #ffffff;
+}
+.text {
+	text-transform: none   !important;
+	word-break    : normal !important;
+  color         : #ffffff;
+}
+
+.title {
+  font-size: 40px    !important;
+  color    : #ffffff !important;
+}
+
+.swiper-container {
+  width: 100%;  !important
+  height: 100%; !important
+}

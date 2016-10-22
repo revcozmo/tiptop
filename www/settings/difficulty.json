@@ -1,0 +1,5 @@
+[
+  {"comment": "easy",   "value":"0"},
+  {"comment": "normal", "value":"1"},
+  {"comment": "hard",   "value":"2"}
+]

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+
+    <!-- compiled css output -->
+    <link href="css/ionic.app.css" rel="stylesheet">
+
+    <link href="/scss/ionic.app.scss" rel="text/css">
+
+    <!-- Additional styling sheet -->
+    <link href="/css/style.css" rel="stylesheet">
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script providing $cordovaFile -->
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/fileService.js"></script>
+    <script src="js/service.js"></script>
+    <script src="js/controller.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/cache.js"></script>
+
+    <!-- Swiper -->
+  <!--Remember swiper initializer-->
+    <!--<link rel="stylesheet" href="lib/Swiper/dist/css/swiper.min.css">-->
+    <!--<script src="lib/Swiper/dist/js/swiper.min.js"></script>-->
+  </head>
+  <body ng-app="app" ng-controller="viewCtrl">
+    <ion-pane>
+
+      <!-- Content -->
+      <ion-side-menus ng-controller="gameCtrl">
+        <!-- Game Content -->
+        <ion-side-menu-content>
+          <div  class     = "row"
+                ng-repeat = "row in gameTable">
+            <div  class = "col"
+                  ng-repeat = "column in row">
+              <button class    = "button button-{{column.color}}"
+                      ng-click = "buttonHit({{column.pos}})">
+                <div class="{{colorToIcon(column.color)}}" style="{{iconVisibility}}"></div>
+              </button>
+            </div>
+          </div>
+        </ion-side-menu-content>
+
+        <!-- Help -->
+        <ion-side-menu side="left" class="screen help">
+          <h2 class="heading" >{{translation.txt[i=0]}}</h2>             <!-- i=0 -->
+          <span class="text"  >{{translation.txt[i=i+1]}}</span>
+          <br>
+          <span class="text"  >{{translation.txt[i=i+1]}}</span>
+          <br>
+          <br>
+          <h2 class="heading" >{{translation.txt[i=i+1]}}</h2>
+          <span class="text"  >{{translation.txt[i=i+1]}}: {{author}}</span>
+          <br>
+          <span class="text"  >{{translation.txt[i=i+1]}}: {{version}}</span>
+          <br>
+          <span class="text"  >{{translation.txt[i=i+1]}} {{thanks}}</span>
+          <br>
+          <br>
+          <span class="text"  >{{translation.txt[i=i+1]}} {{email}}.</span>
+        </ion-side-menu>
+
+        <!-- Settings -->
+        <!-- BUG : txt[i] must be static, variable does not work -->
+        <ion-side-menu side="right" class="screen settings">
+          <h2 class="heading" >{{translation.txt[8]}}</h2>               <!-- i=8 -->
+          <!-- Select difficulty -->
+          <ion-radio ng-value       = "item.value"
+                     ng-model       = "diffChoice"
+                     icon           = "ion-checkmark-circled"
+                     name           = "difficulty"
+                     ng-repeat      = "item in diffList"
+                     ng-click       = "diffChange(item.value)">  <!-- diffList: see difficulty.json -->
+            {{translation.diff[item.value]}}
+          </ion-radio>
+          <br>
+          <!-- Select language -->
+          <ion-radio ng-value       = "item.value"
+                     ng-model       = "langChoice"
+                     icon           = "ion-checkmark-circled"
+                     name           = "language"
+                     ng-repeat      = "item in langList"
+                     ng-click       = "langChange(item.value)">  <!-- langList: see lang.json -->
+            {{item.text}}
+          </ion-radio>
+          <br>
+          <!-- Toggles the color-blindness-mode on or off -->
+          <ion-toggle ng-model      = "item.checked"
+                      name          = "colorBlindness"
+                      toggle-class  = "toggle-assertive"
+                      ng-repeat     = "item in blindList"
+                      ng-click      = "blindChange(item.checked)">
+            {{translation.txt[9]}}
+          </ion-toggle>
+        </ion-side-menu>
+
+      </ion-side-menus>
+
+      <!-- Footer -->
+      <div class="bar bar-footer bar-positive">
+        <button ng-click="showScreen('help')" class="button button-icon icon-left ion-help-circled"></button>   <!-- Help button -->
+        <h1 class="title">{{clickCount}}</h1>                                                                  <!-- Click counter -->
+        <button ng-click="showScreen('settings')" class="button button-icon icon-right ion-gear-b"></button>    <!-- Settings Button -->
+      </div>
+
+    </ion-pane>
+
+    <!-- Initialze swiper -->
+    <!--<script>
+      var mySwiper = new Swiper ('.swiper-container', {
+        // Optional parameters
+          direction: 'vertical',
+          loop: true,
+
+        // If we need pagination
+          pagination: '.swiper-pagination',
+
+        // Navigation arrows
+          nextButton: '.swiper-button-next',
+          prevButton: '.swiper-button-prev',
+
+        // And if we need scrollbar
+          scrollbar: '.swiper-scrollbar',
+      })
+    </script>-->
+  </body>
+</html>

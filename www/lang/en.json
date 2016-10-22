@@ -1,0 +1,23 @@
+{
+  "txt" : [
+    "How to play?",
+    "Just tap on the colored buttons to change their colors and try to color all buttons in the same one.",
+    "Be careful. Tapping on a button will also cause the change of its neighbours colors.",
+
+    "About the App",
+    "Author",
+    "Version",
+    "Thanks to",
+    "If you like to comment on my app or you have an idea for it, write me an e-mail to",
+
+
+    "Settings",
+    "Color Blindness"
+  ],
+
+  "diff" : [
+    "Easy",
+    "Normal",
+    "Hard"
+  ]
+}
