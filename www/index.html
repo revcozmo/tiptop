@@ -57,7 +57,7 @@
         </ion-side-menu-content>
 
         <!-- Help -->
-        <ion-side-menu side="left" class="screen help">
+        <ion-side-menu [scrollbar-y="true"] side="left" class="screen help">
           <h2 class="heading" >{{translation.txt[i=0]}}</h2>             <!-- i=0 -->
           <span class="text"  >{{translation.txt[i=i+1]}}</span>
           <br>
@@ -77,7 +77,7 @@
 
         <!-- Settings -->
         <!-- BUG : txt[i] must be static, variable does not work -->
-        <ion-side-menu side="right" class="screen settings">
+        <ion-side-menu [scrollbar-y="true"] side="right" class="screen settings">
           <h2 class="heading" >{{translation.txt[8]}}</h2>               <!-- i=8 -->
           <!-- Select difficulty -->
           <ion-radio ng-value       = "item.value"

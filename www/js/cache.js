@@ -11,6 +11,7 @@
       var colorToIcon     // cache for settings/colorToIcon.json (link between shown color and needed icon)
       var translation;    // cache for en.json, ger.json, etc.
       var gameTable;      // cache for gameTable cofiguration
+      var colorList;      // cache for sequence of color changes
 
       var readyState    = false;     // indicates whether cache.$get().setup() already run
     /*
@@ -30,6 +31,7 @@
                         this.colorToIcon         = fileService.getData("settings/colorToIcon.json");
                         this.sets                = fileService.getPersonalisedData("settings", "settings.json"); // FIXME does allways use the presets on device
                         this.setTranslation();
+                        this.colorList           = fileService.getData("settings/colorsOrder.json");
                         this.readyState          = true;
                         console.log("CACHE SETUP DONE");
                       },
@@ -84,6 +86,8 @@
                               this.clickCount = 0;
                              },
               setGameTable : function(newGameTable) {this.gameTable = newGameTable;},
+            // var : colorList
+              getColorList : function() {return this.colorList;},
           };
        };
   })

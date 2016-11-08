@@ -40,8 +40,12 @@
 
       // Action after button of gameTable has been hit
         $scope.buttonHit = function(id) {
-          alert(id[0] + " " + id[1]);
-          // TODO
+          alert(id[0] + " " + id[1]); // TODO remove alert
+          // Changes color of button which was hit and its neighbours
+            game.changeColors(id);
+          // Checks if player wins
+            if(game.playerWon())
+              // TODO Game OVer
         };
 
       // Shows for every color unique icon (colorblindness option)
