@@ -24,8 +24,9 @@
           },
         // Gets new level
           newLevel : function() {
-            // TODO FUCKING CRAZY RANDOM CALCULATION
-            cache.newLevel("test");
+            // Generates random number between 0 and cache.getLevelStock()-1
+              var random = Math.floor(Math.random()*cache.getLevelStock());
+            cache.newLevel(random);
             this.update();
           },
         // Changes Color of given button and its neighbours

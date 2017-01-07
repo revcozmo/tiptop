@@ -12,6 +12,7 @@
       var translation;    // cache for en.json, ger.json, etc.
       var level;          // cache for level cofiguration
       var colorList;      // cache for sequence of color changes
+      var levelStock;     // cache for amount of available levels per difficulty
 
     /*
      *  Interface
@@ -68,6 +69,8 @@
           // var : translation
             getTranslation : function() {return translation;},
             setTranslation : function() {translation = fileService.getData("lang/" + this.getLang() + ".json");},
+          // var : levelStock
+            getLevelStock : function() {return levelStock[interface.getDiff()];},
           // Initialises the variables with data from .json
             setup : function(callback) {
                       clickCount          = 0;
@@ -77,6 +80,7 @@
                       buttonList.diffList = fileService.getData("settings/difficulty.json");
                       buttonList.langList = fileService.getData("settings/lang.json");
                       colorToIcon         = fileService.getData("settings/colorToIcon.json");
+                      levelStock          = fileService.getData("settings/levelStock.json");
                       fileService.getPersonalisedData("settings", "settings.json", function(file) {
                                     sets  = file.response;
                                     interface.setTranslation();
