@@ -53,9 +53,9 @@
             var firstButton = gameTable[0][0];
 
             // Compares every buttons color with the color of the button in the upper left corner
-              for(a=0, a < gameTable.length, a++) {
+              for(a=0; a < gameTable.length; a++) {
 
-                for(b=0, b < gameTable[a].length, b++) {
+                for(b=0; b < gameTable[a].length; b++) {
                     if (gameTable[a][b].color != firstButton.color) {
                       return false;
                     }

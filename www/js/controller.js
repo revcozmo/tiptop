@@ -45,6 +45,7 @@
             game.changeColors(id);
           // Checks if player wins
             if(game.playerWon())
+              ;
               // TODO Game OVer
         };
 
