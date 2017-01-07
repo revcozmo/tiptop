@@ -4,9 +4,7 @@
     // If cordova plugin not supported, leave it out (e.g. in browser)
       var root;
       try {
-        $ionicPlatform.ready(function() {
           root = cordova.file.applicationDirectory;
-        });
       } catch(error) {
         root = "";
         console.log("cordova.file not supported : " + error);
@@ -16,9 +14,7 @@
     // If cordova plugin not supported, leave it out (e.g. in browser)
       var storage;
       try {
-        $ionicPlatform.ready(function() {
           storage = cordova.file.dataDirectory;
-        });
       } catch(error) {
         storage = "";
         console.log("cordova.file not supported : " + error);
