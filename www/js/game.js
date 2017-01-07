@@ -16,10 +16,15 @@
             $rootScope.buttonID   = 0;
             $rootScope.gameTable  = cache.getGameTable();
             $rootScope.clickCount = cache.getClicks();
+            $rootScope.appColor   = $rootScope.gameTable[1][1].color;
             if(cache.getBlind()) {
               $rootScope.iconVisibility = "";
             } else
               $rootScope.iconVisibility = "visibility:hidden";
+            if(interface.playerWon()) {
+              $rootScope.winBannerVisibility = "";
+            } else
+              $rootScope.winBannerVisibility = "visibility:hidden";
             console.log("gameTable : update done");
           },
         // Gets new level

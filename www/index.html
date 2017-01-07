@@ -54,65 +54,78 @@
               </button>
             </div>
           </div>
+
+          <!-- Game Over -->
+          <div id="gameOver" class="bar bar-{{appColor}} row button button-full" ng-click="levelRequest()" style="{{winBannerVisibility}}"><!-- bar as banner and row and column for centering h1 -->
+            <div class="col col-center">
+              <h1 id="gameOverTitle" align="center">Tip Top!</h1>
+            </div>
+          </div>
         </ion-side-menu-content>
 
         <!-- Help -->
-        <ion-side-menu [scrollbar-y="true"] side="left" class="screen help">
-          <h2 class="heading" >{{translation.txt[i=0]}}</h2>             <!-- i=0 -->
-          <span class="text"  >{{translation.txt[i=i+1]}}</span>
-          <br>
-          <span class="text"  >{{translation.txt[i=i+1]}}</span>
-          <br>
-          <br>
-          <h2 class="heading" >{{translation.txt[i=i+1]}}</h2>
-          <span class="text"  >{{translation.txt[i=i+1]}}: {{author}}</span>
-          <br>
-          <span class="text"  >{{translation.txt[i=i+1]}}: {{version}}</span>
-          <br>
-          <span class="text"  >{{translation.txt[i=i+1]}} {{thanks}}</span>
-          <br>
-          <br>
-          <span class="text"  >{{translation.txt[i=i+1]}} {{email}}.</span>
+        <ion-side-menu side="left" class="screen help" style="background-color: {{appColor}};">
+          <ion-content id="{{appColor}}">
+            <h2 class="heading" >{{translation.txt[i=0]}}</h2>             <!-- i=0 -->
+            <span class="text"  >{{translation.txt[i=i+1]}}</span>
+            <br>
+            <span class="text"  >{{translation.txt[i=i+1]}}</span>
+            <br>
+            <br>
+            <h2 class="heading" >{{translation.txt[i=i+1]}}</h2>
+            <span class="text"  >{{translation.txt[i=i+1]}}: {{author}}</span>
+            <br>
+            <span class="text"  >{{translation.txt[i=i+1]}}: {{version}}</span>
+            <br>
+            <span class="text"  >{{translation.txt[i=i+1]}} {{thanks}}</span>
+            <br>
+            <br>
+            <span class="text"  >{{translation.txt[i=i+1]}} {{email}}.</span>
+            <br><br><br><br>
+          </ion-content>
         </ion-side-menu>
 
         <!-- Settings -->
         <!-- BUG : txt[i] must be static, variable does not work -->
-        <ion-side-menu [scrollbar-y="true"] side="right" class="screen settings">
-          <h2 class="heading" >{{translation.txt[8]}}</h2>               <!-- i=8 -->
-          <!-- Select difficulty -->
-          <ion-radio ng-value       = "item.value"
-                     ng-model       = "diffChoice"
-                     icon           = "ion-checkmark-circled"
-                     name           = "difficulty"
-                     ng-repeat      = "item in diffList"
-                     ng-click       = "diffChange(item.value)">  <!-- diffList: see difficulty.json -->
-            {{translation.diff[item.value]}}
-          </ion-radio>
-          <br>
-          <!-- Select language -->
-          <ion-radio ng-value       = "item.value"
-                     ng-model       = "langChoice"
-                     icon           = "ion-checkmark-circled"
-                     name           = "language"
-                     ng-repeat      = "item in langList"
-                     ng-click       = "langChange(item.value)">  <!-- langList: see lang.json -->
-            {{item.text}}
-          </ion-radio>
-          <br>
-          <!-- Toggles the color-blindness-mode on or off -->
-          <ion-toggle ng-model      = "item.checked"
-                      name          = "colorBlindness"
-                      toggle-class  = "toggle-assertive"
-                      ng-repeat     = "item in blindList"
-                      ng-click      = "blindChange(item.checked)">
-            {{translation.txt[9]}}
-          </ion-toggle>
+        <ion-side-menu side="right" class="screen settings">
+          <ion-content id="{{appColor}}">
+            <h2 class="heading" >{{translation.txt[8]}}</h2>               <!-- i=8 -->
+            <!-- Select difficulty -->
+            <ion-radio ng-value       = "item.value"
+                      ng-model       = "diffChoice"
+                      icon           = "ion-checkmark-circled"
+                      name           = "difficulty"
+                      ng-repeat      = "item in diffList"
+                      ng-click       = "diffChange(item.value)">  <!-- diffList: see difficulty.json -->
+              {{translation.diff[item.value]}}
+            </ion-radio>
+            <br>
+            <!-- Select language -->
+            <ion-radio ng-value       = "item.value"
+                      ng-model       = "langChoice"
+                      icon           = "ion-checkmark-circled"
+                      name           = "language"
+                      ng-repeat      = "item in langList"
+                      ng-click       = "langChange(item.value)">  <!-- langList: see lang.json -->
+              {{item.text}}
+           </ion-radio>
+           <br>
+           <!-- Toggles the color-blindness-mode on or off -->
+           <ion-toggle  ng-model      = "item.checked"
+                        name          = "colorBlindness"
+                        toggle-class  = "toggle-assertive"
+                        ng-repeat     = "item in blindList"
+                        ng-click      = "blindChange(item.checked)">
+              {{translation.txt[9]}}
+            </ion-toggle>
+            <br><br><br>
+          </ion-content>
         </ion-side-menu>
 
       </ion-side-menus>
 
       <!-- Footer -->
-      <div class="bar bar-footer bar-positive padding-bottom">
+      <div class="bar bar-footer bar-{{appColor}} padding-bottom">
         <button ng-click="showScreen('help')" class="button button-icon icon-left ion-help-circled"></button>   <!-- Help button -->
         <h1 class="title">{{clickCount}}</h1>                                                                  <!-- Click counter -->
         <button ng-click="showScreen('settings')" class="button button-icon icon-right ion-gear-b"></button>    <!-- Settings Button -->
