@@ -82,7 +82,7 @@
                                     interface.setTranslation();
                                     console.log("CACHE SETUP DONE");
                                     callback();
-                                  }); // FIXME does allways use the presets on device
+                                  });
                     },
 
       };

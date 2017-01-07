@@ -10,13 +10,7 @@
             return colorList[i+1];
         };
     // Interface
-      return {
-        // Gets new level
-          newLevel : function() {
-            // TODO FUCKING CRAZY RANDOM CALCULATION
-            cache.newLevel("test");
-            this.update();
-          },
+      var interface = {
         // Shows gameTable
           update : function() {
             $rootScope.buttonID   = 0;
@@ -26,11 +20,18 @@
               $rootScope.iconVisibility = "";
             } else
               $rootScope.iconVisibility = "visibility:hidden";
+            console.log("gameTable : update done");
+          },
+        // Gets new level
+          newLevel : function() {
+            // TODO FUCKING CRAZY RANDOM CALCULATION
+            cache.newLevel("test");
+            this.update();
           },
         // Changes Color of given button and its neighbours
           changeColors : function(pos) {
             // Gets current game table
-              var gameTable = cache.getGameTable;
+              var gameTable = cache.getGameTable();
             // Saves position of button which was hit
               var x = pos[0];
               var y = pos[1];
@@ -38,14 +39,13 @@
               var colorList = cache.getColorList();
 
             // Changes Color of hit button and its neighbours
-              gameTable[x    ][y    ].color = this.getNextColor(gameTable[x    ][y    ].color, colorList);
-              gameTable[x + 1][y    ].color = this.getNextColor(gameTable[x + 1][y    ].color, colorList);
-              gameTable[x - 1][y    ].color = this.getNextColor(gameTable[x - 1][y    ].color, colorList);
-              gameTable[x    ][y + 1].color = this.getNextColor(gameTable[x    ][y + 1].color, colorList);
-              gameTable[x    ][y - 1].color = this.getNextColor(gameTable[x    ][y - 1].color, colorList);
-            // Saves and "activates" changes done to gameTable
+              try { gameTable[x + 1][y    ].color = getNextColor(gameTable[x + 1][y    ].color, colorList); console.log("x= "+ x); }catch (error) {}
+              try { gameTable[x - 1][y    ].color = getNextColor(gameTable[x - 1][y    ].color, colorList); console.log("x= "+ x); }catch (error) {}
+              try { gameTable[x    ][y + 1].color = getNextColor(gameTable[x    ][y + 1].color, colorList); console.log("x= "+ x); }catch (error) {}
+              try { gameTable[x    ][y - 1].color = getNextColor(gameTable[x    ][y - 1].color, colorList); console.log("x= "+ x); }catch (error) {}
+                    gameTable[x    ][y    ].color = getNextColor(gameTable[x    ][y    ].color, colorList);
+            // Saves changes done to gameTable
               cache.setGameTable(gameTable);
-              game.update();
           },
         // Checks wether all buttons have the same color
           playerWon : function() {
@@ -64,6 +64,12 @@
                 }
 
             return true;
-          }
+          },
+        // Adds one to clickCount
+          addClick : function() {
+            cache.setClicks(cache.getClicks() + 1);
+          },
       };
+
+      return interface;
   })
