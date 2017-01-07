@@ -5,10 +5,6 @@
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('app', ['ionic', 'ngCordova']);
 
-app.config(['cacheProvider', function(cacheProvider) {
-
-}])
-
 
 app.run(function($ionicPlatform, cache, view, game) {
   $ionicPlatform.ready(function() {
@@ -36,7 +32,6 @@ app.run(function($ionicPlatform, cache, view, game) {
         // Shows first level
           game.newLevel();
         console.log("APP READY TO USE");
-        alert("APP READY TO USE");
       });
   });
 })

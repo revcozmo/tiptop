@@ -65,12 +65,36 @@
           }
       };
 
-    // Interface
-      return {
-        // Gets file from storage, if not existing from root
-          getPersonalisedData : function(path, file, callback) {
-            $ionicPlatform.ready(function() {
-            // Gets file.json in storage
+      // Gets file from root
+        var getData = function(file) {
+          var request = new XMLHttpRequest();
+          // Synchronous request
+            request.open('GET', root + file, false);
+          request.send(null);
+
+          var response = angular.fromJson(request.responseText);
+
+          if(request.status != 200)
+            console.log("GET " + root + file + " : " + response);
+
+          console.log("GET " + root + file + " : " + angular.toJson(response));
+          return response;
+        };
+
+      // Gets file from storage, if not existing or running in browser from root
+        var getPersonalisedData = function(path, file, callback) {
+          $ionicPlatform.ready(function() {
+            if(ionic.Platform.platforms[0] == "browser") {
+              console.log("Browser detected : Reading default settings");
+              var response = {
+                result   : true,
+                response : getData(root + "/" + path + "/" + file)
+              };
+
+              callback(response);
+
+            } else {
+              // Gets file.json in storage
               $cordovaFile.readAsText(storage, path + "/" + file)
                 .then(function(success) {
                   console.log("cordova read from " + storage + "/" + path + "/" + file + " : " + success);
@@ -80,57 +104,45 @@
                   };
                   callback(response);
                 }, function(error) {
-                  console.log("ERROR: cordova read from " + storage + "/" + path + "/" + file + " : " + angular.toJson(error));
-
-                  if (error == "NOT_FOUND_ERR") {
-                    console.log("Reading default settings");
-                    var response = {
-                      result   : true,
-                      response : this.getData(path + "/" + file)
-                    };
-                  } else {
-                    var response = {
-                      result   : false,
-                      response : error
-                    };
-                  }
+                  console.log("ERROR: cordova read from " + storage + "/" + path + "/" + file + " : " + error);
+                  // Gets information from static files in root directory if personalised file not found or is running in browser
+                    if (error.message == "NOT_FOUND_ERR") {
+                      console.log("Reading default settings");
+                      var response = {
+                        result   : true,
+                        response : this.getData(root + "/" + path + "/" + file)
+                      };
+                    } else {
+                      var response = {
+                        result   : false,
+                        response : error
+                      };
+                    }
 
                   callback(response);
+                  
                 });
+            }
+          });
+        };
+
+      // Saves data to file
+        var setData = function(path, file, txt, callback) {
+            $ionicPlatform.ready(function() {
+              // Checks for directory
+                $cordovaFile.checkDir(storage, path)
+                  .then(function(success) {
+                    // Write file
+                      //alert("ckeckDir : " + angular.toJson(success));
+                      write(storage, path, file, txt, callback);
+                  }, function(error) {
+                    // Create missing directory and writes file afterwards
+                      //alert("ERROR ckeckDir : " + angular.toJson(error));
+                      createDir(error, storage, path, txt, callback);
+                  });
             });
-          },
-        // Gets file from root
-          getData : function(file) {
-            var request = new XMLHttpRequest();
-            // Synchronous request
-              request.open('GET', root + file, false);
-            request.send(null);
+        };
 
-            var response = angular.fromJson(request.responseText);
-
-            if(request.status != 200)
-              console.log("GET " + root + file + " : " + response);
-
-            console.log("GET " + root + file + " : " + response);
-            return response;
-          },
-
-        // Saves data to file
-          setData : function(path, file, txt, callback) {
-              $ionicPlatform.ready(function() {
-                // Checks for directory
-                  $cordovaFile.checkDir(storage, path)
-                    .then(function(success) {
-                      // Write file
-                        //alert("ckeckDir : " + angular.toJson(success));
-                        write(storage, path, file, txt, callback);
-                    }, function(error) {
-                      // Create missing directory and writes file afterwards
-                        //alert("ERROR ckeckDir : " + angular.toJson(error));
-                        createDir(error, storage, path, txt, callback);
-                    });
-              });
-          }
-
-      };
+    // Interface
+      return { getData, getPersonalisedData, setData };
   })

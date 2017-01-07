@@ -1,5 +1,5 @@
 // Coordinates the data transferring between storage and controllers and controllers and controllers
-  app.provider('cache', function() {
+  app.factory('cache', function(fileService) {
     /*
      *  VARIABLES
      */
@@ -14,79 +14,78 @@
       var colorList;      // cache for sequence of color changes
 
     /*
-     *  FUNCTIONS
+     *  Interface
      */
-      // Interface
-       this.$get = function(fileService) {
-          return {
-            // Initialises the variables with data from .json
-              setup : function(callback) {
-                        this.clickCount          = 0;
-                        this.currentScreen       = "game";
-                        this.cfg                 = fileService.getData("config.json");
-                        this.buttonList          = {diffList:[], langList:[]};
-                        this.buttonList.diffList = fileService.getData("settings/difficulty.json");
-                        this.buttonList.langList = fileService.getData("settings/lang.json");
-                        this.colorToIcon         = fileService.getData("settings/colorToIcon.json");
-                        fileService.getPersonalisedData("settings", "settings.json", function(file) {
-                                      this.sets       = file.response;
-                                      console.log("this.sets defined");
-                                      this.setTranslation();
-                                      console.log("CACHE SETUP DONE");
-                                      callback();
-                                    }); // FIXME does allways use the presets on device
-                      },
-            // var : buttonList
-              getListDiff : function() {return this.buttonList.diffList;},
-              getListLang : function() {return this.buttonList.langList;},
-              rmvList     : function() {this.buttonList = {};},
-            // var : cfg
-              getAuthor  : function() {return this.cfg.author;},
-              getEMail   : function() {return this.cfg.email;},
-              getThanks  : function() {return this.cfg.thanks;},
-              getVersion : function() {return this.cfg.version;},
-              getWeb     : function() {return this.cfg.web;},
-              rmvCfg     : function() {this.cfg = {};},
-            // var : clickCount
-              getClicks : function() {return this.clickCount;},
-              setClicks : function(i) {this.clickCount = i;},
-            // var : currentScreen
-              getScreen : function() {return this.currentScreen;},
-              setScreen : function(newScreen) {this.currentScreen = newScreen;},
-            // var : sets
-              getBlind : function() {return this.sets.blind;}, // Must be converted to boolean, because it is saved as string
-              getDiff  : function() {return this.sets.diff;},
-              getLang  : function() {return this.sets.lang;},
-              setBlind : function(newBlind) {
-                          this.sets.blind = newBlind;
-                          // Update settings.json
-                            fileService.setData("settings", "settings.json", angular.toJson(this.sets));
-                         },
-              setDiff  : function(newDiff)  {
-                          this.sets.diff  = newDiff;
-                          // Update settings.json
-                            fileService.setData("settings", "settings.json", angular.toJson(this.sets));
-                         },
-              setLang  : function(newLang)  {
-                          this.sets.lang  = newLang;
-                          this.setTranslation();
-                          // Update settings.json
-                            fileService.setData("settings", "settings.json", angular.toJson(this.sets));
-                         },
-            // var : colorToIcon
-              getIconLibary : function() {return this.colorToIcon;},
-            // var : translation
-              getTranslation : function() {return this.translation;},
-              setTranslation : function() {this.translation = fileService.getData("lang/" + this.getLang() + ".json");},
-            // var : level
-              getColorList : function() {return this.level.colors;},
-              getGameTable : function() {return this.level.table;},
-              newLevel     : function(levelName) {
-                              this.level  = fileService.getData("level/" + this.getDiff() + "/" + levelName + ".json");
-                              this.clickCount = 0;
-                             },
-              setGameTable : function(newGameTable) {this.level.table = newGameTable;},
+      var interface = {
+          // var : buttonList
+            getListDiff : function() {return buttonList.diffList;},
+            getListLang : function() {return buttonList.langList;},
+            rmvList     : function() {buttonList = {};},
+          // var : cfg
+            getAuthor  : function() {return cfg.author;},
+            getEMail   : function() {return cfg.email;},
+            getThanks  : function() {return cfg.thanks;},
+            getVersion : function() {return cfg.version;},
+            getWeb     : function() {return cfg.web;},
+            rmvCfg     : function() {cfg = {};},
+          // var : clickCount
+            getClicks : function() {return clickCount;},
+            setClicks : function(i) {clickCount = i;},
+          // var : currentScreen
+            getScreen : function() {return currentScreen;},
+            setScreen : function(newScreen) {currentScreen = newScreen;},
+          // var : colorToIcon
+            getIconLibary : function() {return colorToIcon;},
 
-          };
-       };
+          // var : level
+            getColorList : function() {return level.colors;},
+            getGameTable : function() {return level.table;},
+            newLevel     : function(levelName) {
+                            level  = fileService.getData("level/" + this.getDiff() + "/" + levelName + ".json");
+                            clickCount = 0;
+                           },
+            setGameTable : function(newGameTable) {level.table = newGameTable;},
+          // var : sets
+            getBlind : function() {return sets.blind;}, // Must be converted to boolean, because it is saved as string
+            getDiff  : function() {return sets.diff;},
+            getLang  : function() {return sets.lang;},
+            setBlind : function(newBlind) {
+                        sets.blind = newBlind;
+                        // Update settings.json
+                          fileService.setData("settings", "settings.json", angular.toJson(sets));
+                       },
+            setDiff  : function(newDiff)  {
+                        sets.diff  = newDiff;
+                        // Update settings.json
+                          fileService.setData("settings", "settings.json", angular.toJson(sets));
+                       },
+            setLang  : function(newLang)  {
+                        sets.lang  = newLang;
+                        this.setTranslation();
+                        // Update settings.json
+                          fileService.setData("settings", "settings.json", angular.toJson(sets));
+                       },
+          // var : translation
+            getTranslation : function() {return translation;},
+            setTranslation : function() {translation = fileService.getData("lang/" + this.getLang() + ".json");},
+          // Initialises the variables with data from .json
+            setup : function(callback) {
+                      clickCount          = 0;
+                      currentScreen       = "game";
+                      cfg                 = fileService.getData("config.json");
+                      buttonList          = {diffList:[], langList:[]};
+                      buttonList.diffList = fileService.getData("settings/difficulty.json");
+                      buttonList.langList = fileService.getData("settings/lang.json");
+                      colorToIcon         = fileService.getData("settings/colorToIcon.json");
+                      fileService.getPersonalisedData("settings", "settings.json", function(file) {
+                                    sets  = file.response;
+                                    interface.setTranslation();
+                                    console.log("CACHE SETUP DONE");
+                                    callback();
+                                  }); // FIXME does allways use the presets on device
+                    },
+
+      };
+
+      return interface;
   })
