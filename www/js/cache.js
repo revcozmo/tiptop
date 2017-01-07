@@ -13,7 +13,6 @@
       var level;          // cache for level cofiguration
       var colorList;      // cache for sequence of color changes
 
-      var readyState    = false;     // indicates whether cache.$get().setup() already run
     /*
      *  FUNCTIONS
      */
@@ -21,7 +20,7 @@
        this.$get = function(fileService) {
           return {
             // Initialises the variables with data from .json
-              setup : function() {
+              setup : function(callback) {
                         this.clickCount          = 0;
                         this.currentScreen       = "game";
                         this.cfg                 = fileService.getData("config.json");
@@ -29,15 +28,14 @@
                         this.buttonList.diffList = fileService.getData("settings/difficulty.json");
                         this.buttonList.langList = fileService.getData("settings/lang.json");
                         this.colorToIcon         = fileService.getData("settings/colorToIcon.json");
-                        this.setTranslation();
                         fileService.getPersonalisedData("settings", "settings.json", function(file) {
                                       this.sets       = file.response;
-                                      this.readyState = true;
+                                      console.log("this.sets defined");
+                                      this.setTranslation();
                                       console.log("CACHE SETUP DONE");
+                                      callback();
                                     }); // FIXME does allways use the presets on device
                       },
-            // var : readyState
-              ready : function() {return this.readyState},
             // var : buttonList
               getListDiff : function() {return this.buttonList.diffList;},
               getListLang : function() {return this.buttonList.langList;},

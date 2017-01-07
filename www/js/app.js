@@ -26,15 +26,17 @@ app.run(function($ionicPlatform, cache, view, game) {
       StatusBar.styleDefault();
     }
     // Initialise cache's variables
-      cache.setup();
-    // Sets the view up
-      view.setup();
-      view.update.all();
-    // Deletes static information in cacheProvider
-      cache.rmvCfg();
-      cache.rmvList();
-    // Shows first level
-      game.newLevel();
-    console.log("APP READY TO USE");
+      cache.setup(function() {
+        // Sets the view up
+          view.setup();
+          view.update.all();
+        // Deletes static information in cacheProvider
+          cache.rmvCfg();
+          cache.rmvList();
+        // Shows first level
+          game.newLevel();
+        console.log("APP READY TO USE");
+        alert("APP READY TO USE");
+      });
   });
 })
