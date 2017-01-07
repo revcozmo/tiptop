@@ -1,5 +1,19 @@
-[
-  [ {"pos":["0","0"], "color":"calm"}, {"pos":["0","1"], "color":"positive"}, {"pos":["0","2"], "color":"positive"}  ],
-  [ {"pos":["0","1"], "color":"calm"}, {"pos":["1","1"], "color":"positive"}, {"pos":["1","2"], "color":"positive"}  ],
-  [ {"pos":["0","2"], "color":"calm"}, {"pos":["2","1"], "color":"calm"},     {"pos":["2","2"], "color":"positive"}  ]
-]
+{
+  "table" :
+    [
+      [ {"pos":["0","0"], "color":"calm"},     {"pos":["0","1"], "color":"positive"}, {"pos":["0","2"], "color":"positive"}  ],
+      [ {"pos":["0","1"], "color":"positive"}, {"pos":["1","1"], "color":"positive"}, {"pos":["1","2"], "color":"positive"}  ],
+      [ {"pos":["0","2"], "color":"calm"},     {"pos":["2","1"], "color":"positive"}, {"pos":["2","2"], "color":"positive"}  ]
+    ],
+  "colors" :
+    [
+      "calm",
+      "positive",
+      "balanced",
+      "energized",
+      "assertive",
+      "royal",
+      "dark",
+      "calm"
+    ]
+}

@@ -10,7 +10,7 @@
       var buttonList;     // cache for settings/difficulty.json, settings/lang.json
       var colorToIcon     // cache for settings/colorToIcon.json (link between shown color and needed icon)
       var translation;    // cache for en.json, ger.json, etc.
-      var gameTable;      // cache for gameTable cofiguration
+      var level;      // cache for level cofiguration
       var colorList;      // cache for sequence of color changes
 
       var readyState    = false;     // indicates whether cache.$get().setup() already run
@@ -31,7 +31,6 @@
                         this.colorToIcon         = fileService.getData("settings/colorToIcon.json");
                         this.sets                = fileService.getPersonalisedData("settings", "settings.json"); // FIXME does allways use the presets on device
                         this.setTranslation();
-                        this.colorList           = fileService.getData("settings/colorsOrder.json");
                         this.readyState          = true;
                         console.log("CACHE SETUP DONE");
                       },
@@ -79,15 +78,15 @@
             // var : translation
               getTranslation : function() {return this.translation;},
               setTranslation : function() {this.translation = fileService.getData("lang/" + this.getLang() + ".json");},
-            // var : gameTable
-              getGameTable : function() {return this.gameTable;},
-              newGameTable : function(level) {
-                              this.gameTable  = fileService.getData("level/" + this.getDiff() + "/" + level + ".json");
+            // var : level
+              getColorList : function() {return this.level.colors;},
+              getGameTable : function() {return this.level.table;},
+              newLevel     : function(levelName) {
+                              this.level  = fileService.getData("level/" + this.getDiff() + "/" + levelName + ".json");
                               this.clickCount = 0;
                              },
-              setGameTable : function(newGameTable) {this.gameTable = newGameTable;},
-            // var : colorList
-              getColorList : function() {return this.colorList;},
+              setGameTable : function(newGameTable) {this.level.table = newGameTable;},
+
           };
        };
   })
