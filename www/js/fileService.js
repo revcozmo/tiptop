@@ -1,30 +1,107 @@
 // Contains functions for reading and writing files
-  app.factory('fileService', function($cordovaFile, fileSubService) {
-    // Extends root path if app is used on android device
-      var root = "";
-      if(ionic.Platform.isAndroid())
-        root = "/android_asset/www/";
+  app.factory('fileService', function($cordovaFile, $ionicPlatform) {
+    // Directory where app is saved
+    // If cordova plugin not supported, leave it out (e.g. in browser)
+      var root;
+      try {
+        $ionicPlatform.ready(function() {
+          root = cordova.file.applicationDirectory;
+        });
+      } catch(error) {
+        root = "";
+        console.log("cordova.file not supported : " + error);
+      }
+
     // Directory where dynamic information are saved (like the settings)
     // If cordova plugin not supported, leave it out (e.g. in browser)
+      var storage;
       try {
-        var storage = cordova.file.dataDirectory;
+        $ionicPlatform.ready(function() {
+          storage = cordova.file.dataDirectory;
+        });
       } catch(error) {
-        var storage = "'storage'";
-        console.log("cordova.file.dataDirectory not supported : " + error);
+        storage = "";
+        console.log("cordova.file not supported : " + error);
       }
+
+    /*********************************************/
+    /* FUNCTIONS                                 */
+    /*********************************************/
+      var write = function(storage, path, file, txt, callback) {
+        $cordovaFile.writeFile(storage, path + "/" + file, txt, true)
+          .then(function(success) {
+            console.log("Write to file " + storage + "/" + path + "/" + file + " : " + angular.toJson(success));
+            var response = {
+              result   : true,
+              response : success
+            };
+            callback(response);
+          }, function(error) {
+            console.log("ERROR: Write to file " + storage + "/" + path + "/" + file + " : " + angular.toJson(error));
+            var response = {
+              result   : false,
+              response : error
+            };
+            //alert("Write : " + angular.toJson(response));
+            callback(response);
+          });
+      };
+      var createDir = function(error, storage, path, file, txt, callback) {
+        // error is the return parameter of $cordovaFile.checkDir()
+        // Create missing directory
+          if(error.message == "NOT_FOUND_ERR") {
+            $cordovaFile.createDir(storage, path)
+              .then(function(success) {
+                // Write file
+                  write(storage, path, file, txt, callback);
+              }, function(error) {
+                console.log("ERROR: Creating directory " + storage + "/" + path + " : " + angular.toJson(error));
+                var response = {
+                  result   : false,
+                  response : error
+                };
+                //alert("createDir : " + angular.toJson(response));
+                callback(response);
+              });
+        // Unexpected error when checking directory's existence
+          } else {
+            console.log("ERROR: Checking for path "+ storage + "/" + path + " : " + error);
+          }
+      };
 
     // Interface
       return {
         // Gets file from storage, if not existing from root
-          getPersonalisedData : function(path, file) {
+          getPersonalisedData : function(path, file, callback) {
+            $ionicPlatform.ready(function() {
             // Gets file.json in storage
-              var response = fileSubService.getFromStorage(storage, path, file);
-            // Gets file.json from root, if no personalised version in storage existing
-              if(response)
-                response = this.getData(path + "/" + file);
-              console.log(angular.fromJson(response));
+              $cordovaFile.readAsText(storage, path + "/" + file)
+                .then(function(success) {
+                  console.log("cordova read from " + storage + "/" + path + "/" + file + " : " + success);
+                  var response = {
+                    result   : true,
+                    response : angular.fromJson(success)
+                  };
+                  callback(response);
+                }, function(error) {
+                  console.log("ERROR: cordova read from " + storage + "/" + path + "/" + file + " : " + angular.toJson(error));
 
-            return response;
+                  if (error == "NOT_FOUND_ERR") {
+                    console.log("Reading default settings");
+                    var response = {
+                      result   : true,
+                      response : this.getData(path + "/" + file)
+                    };
+                  } else {
+                    var response = {
+                      result   : false,
+                      response : error
+                    };
+                  }
+
+                  callback(response);
+                });
+            });
           },
         // Gets file from root
           getData : function(file) {
@@ -43,76 +120,21 @@
           },
 
         // Saves data to file
-          setData : function(path, file, txt) {
-            // Checks for directory
-              fileSubService.checkDir(storage, path);
-
-            // Write file
-              $cordovaFile.writeFile(storage, path + file, txt, true)
-                .then(function (success) {
-                  console.log("Write to file " + storage + "/" + path + "/" + file + " : " + success);
-                }, function (error) {
-                  console.log("Write to file " + storage + "/" + path + "/" + file + " : " + error);
-                });
+          setData : function(path, file, txt, callback) {
+              $ionicPlatform.ready(function() {
+                // Checks for directory
+                  $cordovaFile.checkDir(storage, path)
+                    .then(function(success) {
+                      // Write file
+                        //alert("ckeckDir : " + angular.toJson(success));
+                        write(storage, path, file, txt, callback);
+                    }, function(error) {
+                      // Create missing directory and writes file afterwards
+                        //alert("ERROR ckeckDir : " + angular.toJson(error));
+                        createDir(error, storage, path, txt, callback);
+                    });
+              });
           }
-      };
-  })
 
-// Contains sub functions for fileService
-  app.factory('fileSubService', function($cordovaFile, tool) {
-    // Interface
-      return {
-        // Creates directory
-          createDir : function(storage, path) {
-            var response = $cordovaFile.createDir(storage, path)
-                            .then(function(success) {
-                              return true;
-                            }, function(error) {
-                              console.log("Creating directory " +storage + "/" + path + " : " + error);
-                              return error;
-                            });
-            // Synchronises asynchronous request with the rest of the code
-              while(!response)
-                tool.sleep(100);
-
-            return response;
-          },
-
-        // Checks for directory's existence
-          checkDir : function(storage, path) {
-            var response = $cordovaFile.checkDir(storage, path)
-                            .then(function(success) {
-                              return true;
-                            }, function(error) {
-                              if(error === "NOT_FOUND_ERR") {
-                                // Creates dir if not found
-                                  this.createDir(path);
-                              } else
-                                console.log("Checking for path "+ storage + "/" + path + " : " + error);
-                                  return error;
-                            });
-            // Synchronises asynchronous request with the rest of the code
-              while(!response)
-                tool.sleep(100);
-
-            return response;
-          },
-
-          // Gets file from storage
-            getFromStorage : function(storage, path, file) {
-              var response = $cordovaFile.readAsText(storage, file)
-                              .then(function(success) {
-                                alert(success);
-                                return angular.fromJson(success); // FIXME response does not equal return param
-                              }, function(error) {
-                                console.log("cordova read from " + storage + "/" + path + "/" + file + " : " + error);
-                                return "ERROR";
-                              });
-              // Synchronises asynchronous request with the rest of the code
-                while(!response)
-                  tool.sleep(100);
-
-              return response;
-            }
       };
   })

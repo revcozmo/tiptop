@@ -29,10 +29,12 @@
                         this.buttonList.diffList = fileService.getData("settings/difficulty.json");
                         this.buttonList.langList = fileService.getData("settings/lang.json");
                         this.colorToIcon         = fileService.getData("settings/colorToIcon.json");
-                        this.sets                = fileService.getPersonalisedData("settings", "settings.json"); // FIXME does allways use the presets on device
                         this.setTranslation();
-                        this.readyState          = true;
-                        console.log("CACHE SETUP DONE");
+                        fileService.getPersonalisedData("settings", "settings.json", function(file) {
+                                      this.sets       = file.response;
+                                      this.readyState = true;
+                                      console.log("CACHE SETUP DONE");
+                                    }); // FIXME does allways use the presets on device
                       },
             // var : readyState
               ready : function() {return this.readyState},
