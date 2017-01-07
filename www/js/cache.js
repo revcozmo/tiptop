@@ -10,7 +10,7 @@
       var buttonList;     // cache for settings/difficulty.json, settings/lang.json
       var colorToIcon     // cache for settings/colorToIcon.json (link between shown color and needed icon)
       var translation;    // cache for en.json, ger.json, etc.
-      var level;      // cache for level cofiguration
+      var level;          // cache for level cofiguration
       var colorList;      // cache for sequence of color changes
 
       var readyState    = false;     // indicates whether cache.$get().setup() already run
