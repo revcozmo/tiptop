@@ -68,7 +68,7 @@
                        },
           // var : translation
             getTranslation : function() {return translation;},
-            setTranslation : function() {translation = fileService.getData("lang/" + this.getLang() + ".json");},
+            setTranslation : function() {translation = fileService.getData("lang/" + interface.getLang() + ".json");},
           // var : levelStock
             getLevelStock : function() {return levelStock[interface.getDiff()];},
           // Initialises the variables with data from .json

@@ -1,24 +1,17 @@
 // Contains functions for reading and writing files
   app.factory('fileService', function($cordovaFile, $ionicPlatform) {
-    // Directory where app is saved
-    // If cordova plugin not supported, leave it out (e.g. in browser)
-      var root;
-      try {
-          root = cordova.file.applicationDirectory;
-      } catch(error) {
-        root = "";
-        console.log("cordova.file not supported : " + error);
-      }
-
-    // Directory where dynamic information are saved (like the settings)
-    // If cordova plugin not supported, leave it out (e.g. in browser)
+    // cordovaFile shortcut for dataDirectory
       var storage;
-      try {
-          storage = cordova.file.dataDirectory;
-      } catch(error) {
-        storage = "";
-        console.log("cordova.file not supported : " + error);
-      }
+      $ionicPlatform.ready(function() {
+          // Directory where dynamic information are saved (like the settings)
+          // If cordova plugin not supported, leave it out (e.g. in browser)
+          try {
+              storage = cordova.file.dataDirectory;
+          } catch(error) {
+              storage = "";
+              console.log("cordova.file not supported : " + error);
+          }
+        });
 
     /*********************************************/
     /* FUNCTIONS                                 */
@@ -38,7 +31,7 @@
               result   : false,
               response : error
             };
-            //alert("Write : " + angular.toJson(response));
+
             callback(response);
           });
       };
@@ -56,7 +49,7 @@
                   result   : false,
                   response : error
                 };
-                //alert("createDir : " + angular.toJson(response));
+
                 callback(response);
               });
         // Unexpected error when checking directory's existence
@@ -69,15 +62,15 @@
         var getData = function(file) {
           var request = new XMLHttpRequest();
           // Synchronous request
-            request.open('GET', root + file, false);
+            request.open('GET', file, false);
           request.send(null);
 
           var response = angular.fromJson(request.responseText);
 
           if(request.status != 200)
-            console.log("GET " + root + file + " : " + response);
+            console.log("GET " + file + " : " + response);
 
-          console.log("GET " + root + file + " : " + angular.toJson(response));
+          console.log("GET " + file + " : " + angular.toJson(response));
           return response;
         };
 
@@ -88,7 +81,7 @@
               console.log("Browser detected : Reading default settings");
               var response = {
                 result   : true,
-                response : getData(root + "/" + path + "/" + file)
+                response : getData(path + "/" + file)
               };
 
               callback(response);
@@ -104,13 +97,15 @@
                   };
                   callback(response);
                 }, function(error) {
-                  console.log("ERROR: cordova read from " + storage + "/" + path + "/" + file + " : " + error);
+                  console.log("ERROR: cordova read from " + storage + "/" + path + "/" + file + " : " + error.message);
+
                   // Gets information from static files in root directory if personalised file not found or is running in browser
                     if (error.message == "NOT_FOUND_ERR") {
                       console.log("Reading default settings");
+
                       var response = {
                         result   : true,
-                        response : this.getData(root + "/" + path + "/" + file)
+                        response : getData(path + "/" + file)
                       };
                     } else {
                       var response = {
@@ -133,11 +128,9 @@
                 $cordovaFile.checkDir(storage, path)
                   .then(function(success) {
                     // Write file
-                      //alert("ckeckDir : " + angular.toJson(success));
                       write(storage, path, file, txt, callback);
                   }, function(error) {
                     // Create missing directory and writes file afterwards
-                      //alert("ERROR ckeckDir : " + angular.toJson(error));
                       createDir(error, storage, path, txt, callback);
                   });
             });

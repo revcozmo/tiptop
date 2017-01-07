@@ -8,30 +8,34 @@ var app = angular.module('app', ['ionic', 'ngCordova']);
 
 app.run(function($ionicPlatform, cache, view, game) {
   $ionicPlatform.ready(function() {
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-      // for form inputs)
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-
-      // Don't remove this line unless you know what you are doing. It stops the viewport
-      // from snapping when text inputs are focused. Ionic handles this internally for
-      // a much nicer keyboard experience.
-      cordova.plugins.Keyboard.disableScroll(true);
+    try {
+      if(window.cordova && window.cordova.plugins.Keyboard) {
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        // Don't remove this line unless you know what you are doing. It stops the viewport
+        // from snapping when text inputs are focused. Ionic handles this internally for
+        // a much nicer keyboard experience.
+        cordova.plugins.Keyboard.disableScroll(true);
+      }
+      if(window.StatusBar) {
+        StatusBar.styleDefault();
+      }
+      // Initialise cache's variables
+        cache.setup(function() {
+          // Sets the view up
+            view.setup();
+            view.update.all();
+            // Deletes static information in cacheProvider
+            cache.rmvCfg();
+            cache.rmvList();
+            // Shows first level
+            game.newLevel();
+            console.log("APP READY TO USE");
+          });
+    } catch(error) {
+      console.log("Error in app.run() : " + error);
+      alert("Error in app.run() : " + error);
     }
-    if(window.StatusBar) {
-      StatusBar.styleDefault();
-    }
-    // Initialise cache's variables
-      cache.setup(function() {
-        // Sets the view up
-          view.setup();
-          view.update.all();
-        // Deletes static information in cacheProvider
-          cache.rmvCfg();
-          cache.rmvList();
-        // Shows first level
-          game.newLevel();
-        console.log("APP READY TO USE");
-      });
   });
 })
