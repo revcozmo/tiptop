@@ -7,9 +7,12 @@
 
 
     <!-- compiled css output -->
-    <link href="css/ionic.app.css" rel="stylesheet">
+    <!-- <link href="css/ionic.app.css" rel="stylesheet"> -->
 
     <link href="/scss/ionic.app.scss" rel="text/css">
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+
 
     <!-- Additional styling sheet -->
     <link href="/css/style.css" rel="stylesheet">
@@ -64,8 +67,8 @@
         </ion-side-menu-content>
 
         <!-- Help -->
-        <ion-side-menu side="left" class="screen help" style="background-color: {{appColor}};">
-          <ion-content id="{{appColor}}">
+        <ion-side-menu side="left" class="screen help">
+          <ion-content id="{{appColor}}" class="padding">
             <h2 class="heading" >{{translation.txt[i=0]}}</h2>             <!-- i=0 -->
             <span class="text"  >{{translation.txt[i=i+1]}}</span>
             <br>
