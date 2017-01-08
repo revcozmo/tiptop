@@ -47,14 +47,12 @@
       <ion-side-menus ng-controller="gameCtrl">
         <!-- Game Content -->
         <ion-side-menu-content>
-          <div  class     = "row"
+          <div  class     = "row square" id="royal"
                 ng-repeat = "row in gameTable">
-            <div  class = "col"
-                  ng-repeat = "column in row">
-              <button class    = "button button-{{column.color}}"
-                      ng-click = "buttonHit({{column.pos}})">
+            <div  class     = "col button button-{{column.color}} gameButton"
+                  ng-repeat = "column in row"
+                  ng-click  = "buttonHit({{column.pos}})">
                 <div class="{{colorToIcon(column.color)}}" style="{{iconVisibility}}"></div>
-              </button>
             </div>
           </div>
 
@@ -136,23 +134,5 @@
 
     </ion-pane>
 
-    <!-- Initialze swiper -->
-    <!--<script>
-      var mySwiper = new Swiper ('.swiper-container', {
-        // Optional parameters
-          direction: 'vertical',
-          loop: true,
-
-        // If we need pagination
-          pagination: '.swiper-pagination',
-
-        // Navigation arrows
-          nextButton: '.swiper-button-next',
-          prevButton: '.swiper-button-prev',
-
-        // And if we need scrollbar
-          scrollbar: '.swiper-scrollbar',
-      })
-    </script>-->
   </body>
 </html>

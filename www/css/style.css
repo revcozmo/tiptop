@@ -1,15 +1,15 @@
 .screen {
-  padding         : 5px 5px 5px 5px !important;
+  padding : 5px 5px 5px 5px !important;
   /*background-color: #00a01a; /*(old color)*/
 }
 .heading {
-  text-align: center !important;
+  text-align: center;
   color     : #ffffff;
 }
 .text {
-	text-transform: none   !important;
-	word-break    : normal !important;
-  color         : #ffffff;
+	text-transform: none    !important;
+	word-break    : normal  !important;
+  color         : #ffffff !important;
 }
 
 .title {
@@ -17,30 +17,37 @@
   color    : #ffffff !important;
 }
 
-.swiper-container {
-  width: 100%;  !important
-  height: 100%; !important
+/* GameTable buttons */
+.gameButton {
+  margin: 5px 5px 5px 5px;
+}
+
+.square {
+  width: 100%         !important;
+  height: 0           !important;
+  margin-bottom: 33% !important;
 }
 
 #gameOver {
-  position: fixed;
-  z-index: 1000;
-  width: auto;
-  height: 40%;
-  top: 20%;
+  position: fixed !important;
+  z-index: 1000   !important;
+  width: auto     !important;
+  height: 40%     !important;
+  top: 20%        !important;
 }
+
 #gameOverTitle {
-  font-size: 60px;
-  color: #ffffff;
+  font-size: 60px !important;
+  color: #ffffff  !important;
 }
 
 /* Colors for side-menues */
-#light     {  background-color: #fff;     }
-#stable    {  background-color: #f8f8f8;  }
-#positive  {  background-color: #387ef5;  }
-#calm      {  background-color: #11c1f3;  }
-#balanced  {  background-color: #33cd5f;  }
-#energized {  background-color: #ffc900;  }
-#assertive {  background-color: #ef473a;  }
-#royal     {  background-color: #886aea   }
-#dark      {  background-color: #444;     }
+#light     {  background-color: #fff    !important;  }
+#stable    {  background-color: #f8f8f8 !important;  }
+#positive  {  background-color: #387ef5 !important;  }
+#calm      {  background-color: #11c1f3 !important;  }
+#balanced  {  background-color: #33cd5f !important;  }
+#energized {  background-color: #ffc900 !important;  }
+#assertive {  background-color: #ef473a !important;  }
+#royal     {  background-color: #886aea !important;  }
+#dark      {  background-color: #444    !important;  }
