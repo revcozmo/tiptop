@@ -20,12 +20,19 @@
 /* GameTable buttons */
 .gameButton {
   margin: 5px 5px 5px 5px;
+  padding: 2px;
+  border-radius: 5px;
 }
 
-.square {
-  width: 100%         !important;
+.gameTable {
+  width: 90%          !important;
   height: 0           !important;
-  margin-bottom: 33% !important;
+  padding-bottom: 90% !important;
+  margin: -50% 0% 0% -5%;
+  position: absolute;
+  top: 50%;
+  left:10%;
+  border-radius: 5%;
 }
 
 #gameOver {
