@@ -1,0 +1,17 @@
+{
+  "table" :
+    [
+      [ {"pos":[0,0], "color":"assertive"}, {"pos":[0,1], "color":"royal"}, {"pos":[0,2], "color":"calm"}  ],
+      [ {"pos":[1,0], "color":"royal"},     {"pos":[1,1], "color":"royal"}, {"pos":[1,2], "color":"dark"}  ],
+      [ {"pos":[2,0], "color":"royal"},     {"pos":[2,1], "color":"dark"},  {"pos":[2,2], "color":"royal"} ]
+    ],
+  "colors" :
+    [
+      "calm",
+      "positive",
+      "dark",
+      "assertive",
+      "royal",
+      "calm"
+    ]
+}

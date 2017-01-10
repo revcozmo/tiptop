@@ -1,0 +1,17 @@
+{
+  "table" :
+    [
+      [ {"pos":[0,0], "color":"assertive"}, {"pos":[0,1], "color":"assertive"}, {"pos":[0,2], "color":"calm"},      {"pos":[0,3], "color":"assertive"}, {"pos":[0,4], "color":"dark"}      ],
+      [ {"pos":[1,0], "color":"dark"},      {"pos":[1,1], "color":"dark"},      {"pos":[1,2], "color":"calm"},      {"pos":[1,3], "color":"dark"},      {"pos":[1,4], "color":"dark"}      ],
+      [ {"pos":[2,0], "color":"calm"},      {"pos":[2,1], "color":"dark"},      {"pos":[2,2], "color":"assertive"}, {"pos":[2,3], "color":"assertive"}, {"pos":[2,4], "color":"calm"}      ],
+      [ {"pos":[3,0], "color":"assertive"}, {"pos":[3,1], "color":"assertive"}, {"pos":[3,2], "color":"dark"},      {"pos":[3,3], "color":"calm"},      {"pos":[3,4], "color":"dark"}      ],
+      [ {"pos":[4,0], "color":"assertive"}, {"pos":[4,1], "color":"assertive"}, {"pos":[4,2], "color":"dark"},      {"pos":[4,3], "color":"calm"},      {"pos":[4,4], "color":"assertive"} ]
+    ],
+  "colors" :
+    [
+      "calm",
+      "dark",
+      "assertive",
+      "calm"
+    ]
+}

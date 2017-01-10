@@ -1,0 +1,15 @@
+{
+  "table" :
+    [
+      [ {"pos":[0,0], "color":"energized"}, {"pos":[0,1], "color":"dark"},      {"pos":[0,2], "color":"energized"}  ],
+      [ {"pos":[1,0], "color":"energized"}, {"pos":[1,1], "color":"calm"},      {"pos":[1,2], "color":"dark"}       ],
+      [ {"pos":[2,0], "color":"calm"},      {"pos":[2,1], "color":"energized"}, {"pos":[2,2], "color":"energized"}  ]
+    ],
+  "colors" :
+    [
+      "calm",
+      "energized",
+      "dark",
+      "calm"
+    ]
+}
