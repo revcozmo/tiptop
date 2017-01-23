@@ -41,9 +41,27 @@
           // var : level
             getColorList : function() {return level.colors;},
             getGameTable : function() {return level.table;},
+            getLastLevel : function() {
+              // TODO
+                            fileService.getPersonalisedData("history", "currentLevel.json", function(file) {
+                              if(file.response != false) {
+                                // Set variables
+                              } else {
+                                // Get new level
+                              }
+                            });
+                           },
             newLevel     : function(levelName) {
                             level  = fileService.getData("level/" + this.getDiff() + "/" + levelName + ".json");
                             clickCount = 0;
+                           },
+            saveLevel    : function() {
+                            var levelObj        = {};
+                            levelObj.gameTable  = this.getGameTable();
+                            levelObj.colors     = this.getColorList();
+                            levelObj.clickCount = this.getClicks();
+
+                            fileService.setData("history", "currentLevel.json", angular.toJson(levelObj));
                            },
             setGameTable : function(newGameTable) {level.table = newGameTable;},
           // var : sets
