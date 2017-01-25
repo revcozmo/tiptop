@@ -29,8 +29,11 @@ app.run(function($ionicPlatform, cache, view, game) {
             // Deletes static information in cacheProvider
             cache.rmvCfg();
             cache.rmvList();
-            // Shows first level
-            game.newLevel();
+            // Gets new level, if there's no unfinished save existing; if there is just update the view of the gamTable, cos the unfinsished level is already loaded into the cache (->cache.setup())
+            if(cache.getLevelStatus)
+              game.newLevel();
+            else
+              game.update();
             console.log("APP READY TO USE");
           });
     } catch(error) {

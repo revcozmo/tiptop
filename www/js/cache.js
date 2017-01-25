@@ -13,6 +13,7 @@
       var level;          // cache for level cofiguration
       var colorList;      // cache for sequence of color changes
       var levelStock;     // cache for amount of available levels per difficulty
+      var unfinshedLevel; // saves wether there is a level saved, which was not finished before App was started again
 
     /*
      *  Interface
@@ -37,33 +38,39 @@
             setScreen : function(newScreen) {currentScreen = newScreen;},
           // var : colorToIcon
             getIconLibary : function() {return colorToIcon;},
-
+          // var : finishedLevel
+            getLevelStatus : function() {return finishedLevel;},
+            setLevelStatus : function(status) {finishedLevel = status;},
           // var : level
             getColorList : function() {return level.colors;},
             getGameTable : function() {return level.table;},
-            getLastLevel : function() {
-              // TODO
-                            fileService.getPersonalisedData("history", "currentLevel.json", function(file) {
-                              if(file.response != false) {
-                                // Set variables
-                              } else {
-                                // Get new level
-                              }
-                            });
-                           },
             newLevel     : function(levelName) {
-                            level  = fileService.getData("level/" + this.getDiff() + "/" + levelName + ".json");
+                            level      = fileService.getData("level/" + this.getDiff() + "/" + levelName + ".json");
                             clickCount = 0;
                            },
             saveLevel    : function() {
                             var levelObj        = {};
-                            levelObj.gameTable  = this.getGameTable();
+                            levelObj.table      = this.getGameTable();
                             levelObj.colors     = this.getColorList();
                             levelObj.clickCount = this.getClicks();
 
                             fileService.setData("history", "currentLevel.json", angular.toJson(levelObj));
                            },
             setGameTable : function(newGameTable) {level.table = newGameTable;},
+            getLastLevel : function() {
+                            fileService.getPersonalisedData("history", "currentLevel.json", function(file) {
+                              if(file.response != false) {
+                                // If there's a saved level existing set the content of save-file as current level information
+                                  level = angular.fromJson(file.response);
+                                  interface.setClicks(level.clickCount);
+                                  // Change finishedLevel to false so the app knows when setting up everything that it don't has to get a new level
+                                    interface.setLevelStatus(false);
+                              } else {
+                                // There's no save existing -> change finishedLevel to true so a new level is gotten when app is set up
+                                  interface.setLevelStatus(true);
+                              }
+                            });
+                           },
           // var : sets
             getBlind : function() {return sets.blind;}, // Must be converted to boolean, because it is saved as string
             getDiff  : function() {return sets.diff;},
@@ -99,6 +106,7 @@
                       buttonList.langList = fileService.getData("settings/lang.json");
                       colorToIcon         = fileService.getData("settings/colorToIcon.json");
                       levelStock          = fileService.getData("settings/levelStock.json");
+                      interface.getLastLevel();
                       fileService.getPersonalisedData("settings", "settings.json", function(file) {
                                     sets  = file.response;
                                     interface.setTranslation();
