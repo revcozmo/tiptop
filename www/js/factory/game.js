@@ -1,5 +1,4 @@
-// Serves gameTable
-  app.factory('game', function(cache, $rootScope) {
+p .factory('game', function(cache, $rootScope) {
     // Subroutines
       // Gets next color from the preset list
         var getNextColor = function(oldColor, colorList) {
@@ -45,10 +44,10 @@
               var colorList = cache.getColorList();
 
             // Changes Color of hit button and its neighbours
-              try { gameTable[x + 1][y    ].color = getNextColor(gameTable[x + 1][y    ].color, colorList); console.log("x= "+ x); }catch (error) {}
-              try { gameTable[x - 1][y    ].color = getNextColor(gameTable[x - 1][y    ].color, colorList); console.log("x= "+ x); }catch (error) {}
-              try { gameTable[x    ][y + 1].color = getNextColor(gameTable[x    ][y + 1].color, colorList); console.log("x= "+ x); }catch (error) {}
-              try { gameTable[x    ][y - 1].color = getNextColor(gameTable[x    ][y - 1].color, colorList); console.log("x= "+ x); }catch (error) {}
+              try { gameTable[x + 1][y    ].color = getNextColor(gameTable[x + 1][y    ].color, colorList); } catch (error) {}
+              try { gameTable[x - 1][y    ].color = getNextColor(gameTable[x - 1][y    ].color, colorList); } catch (error) {}
+              try { gameTable[x    ][y + 1].color = getNextColor(gameTable[x    ][y + 1].color, colorList); } catch (error) {}
+              try { gameTable[x    ][y - 1].color = getNextColor(gameTable[x    ][y - 1].color, colorList); } catch (error) {}
                     gameTable[x    ][y    ].color = getNextColor(gameTable[x    ][y    ].color, colorList);
             // Saves changes done to gameTable
               cache.setGameTable(gameTable);
