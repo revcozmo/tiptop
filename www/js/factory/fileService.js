@@ -147,15 +147,29 @@
       // Saves data to file
         var setData = function(path, file, txt, callback) {
             $ionicPlatform.ready(function() {
-              // Checks for directory
-                $cordovaFile.checkDir(storage, path)
-                  .then(function(success) {
-                    // Write file
-                      write(storage, path, file, txt, callback);
-                  }, function(error) {
-                    // Create missing directory and writes file afterwards
-                      createDir(error, storage, path, txt, callback);
-                  });
+              if (ionic.Platform.platforms[0] == "browser") {
+
+                console.log("Error: Editing file " + path + "/" + file + " not possible because cordova is not supported by browsers");
+
+                var response = {
+                  result   : false,
+                  response : { message : "BROWSER_NOT_COMPATIBLE_WITH_CORDOVA" }
+                };
+                callback(response);
+
+              } else {
+
+                // Checks for directory
+                  $cordovaFile.checkDir(storage, path)
+                    .then(function(success) {
+                      // Write file
+                        write(storage, path, file, txt, callback);
+                    }, function(error) {
+                      // Create missing directory and writes file afterwards
+                        createDir(error, storage, path, txt, callback);
+                    });
+
+              }
             });
         };
 
