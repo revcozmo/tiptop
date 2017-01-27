@@ -82,18 +82,18 @@
             setBlind : function(newBlind) {
                         sets.blind = newBlind;
                         // Update settings.json
-                          fileService.setData("settings", "settings.json", angular.toJson(sets));
+                          fileService.setData("settings", "settings.json", angular.toJson(sets), function(answer) {});
                        },
             setDiff  : function(newDiff)  {
                         sets.diff  = newDiff;
                         // Update settings.json
-                          fileService.setData("settings", "settings.json", angular.toJson(sets));
+                          fileService.setData("settings", "settings.json", angular.toJson(sets), function(answer) {});
                        },
             setLang  : function(newLang)  {
                         sets.lang  = newLang;
                         this.setTranslation();
                         // Update settings.json
-                          fileService.setData("settings", "settings.json", angular.toJson(sets));
+                          fileService.setData("settings", "settings.json", angular.toJson(sets), function(answer) {});
                        },
           // var : translation
             getTranslation : function() {return translation;},
