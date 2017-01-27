@@ -78,11 +78,24 @@
         var getPersonalisedData = function(path, file, useRoot, callback) {
           $ionicPlatform.ready(function() {
             if(ionic.Platform.platforms[0] == "browser") {
-              console.log("Browser detected : Reading default settings");
-              var response = {
-                result   : true,
-                response : getData(path + "/" + file)
-              };
+
+              if (useRoot == true) {
+
+                console.log("Browser detected : Reading default settings from root");
+                var response = {
+                  result   : true,
+                  response : getData(path + "/" + file)
+                };
+
+              } else {
+
+                console.log("Browser detected : Unable to read data because useRoot=" + useRoot);
+                var response = {
+                  result : false,
+                  response : { message : "BROWSER_NOT_COMPATIBLE_WITH_CORDOVA" }
+                };
+
+              }
 
               callback(response);
 

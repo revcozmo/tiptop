@@ -59,7 +59,7 @@
             setGameTable : function(newGameTable) {level.table = newGameTable;},
             getLastLevel : function() {
                             fileService.getPersonalisedData("history", "currentLevel.json", false, function(file) {
-                              if(file.result == true)
+                              if(file.result == true) {
                                 console.log("Got last played level");
                                 // If there's a saved level existing set the content of save-file as current level information
                                   level = angular.fromJson(file.response);
