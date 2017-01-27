@@ -18,7 +18,11 @@
           // Changes color of button which was hit and its neighbours
             game.changeColors(id);
             game.addClick();
+
           game.update();
+          
+          // Save current progress into storage/history/currentLevel.json
+            cache.saveLevel();
         };
 
       // Shows for every color unique icon (colorblindness option)

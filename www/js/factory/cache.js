@@ -54,7 +54,9 @@
                             levelObj.colors     = this.getColorList();
                             levelObj.clickCount = this.getClicks();
 
-                            fileService.setData("history", "currentLevel.json", angular.toJson(levelObj));
+                            fileService.setData("history", "currentLevel.json", angular.toJson(levelObj), function(answer) {
+                              console.log("Saving current level to storage/history/currentLevel.json:\nSuccess: " + answer.result + "\n" + angular.toJson(answer.response));
+                            });
                            },
             setGameTable : function(newGameTable) {level.table = newGameTable;},
             getLastLevel : function() {
