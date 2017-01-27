@@ -1,4 +1,4 @@
-p .factory('game', function(cache, $rootScope) {
+ .factory('game', function(cache, $rootScope) {
     // Subroutines
       // Gets next color from the preset list
         var getNextColor = function(oldColor, colorList) {
