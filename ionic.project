@@ -1,8 +1,0 @@
-{
-  "name": "tiptop",
-  "app_id": "",
-  "watchPatterns": [
-    "www/**/*",
-    "!www/lib/**/*"
-  ]
-}

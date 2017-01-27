@@ -75,7 +75,7 @@
         };
 
       // Gets file from storage, if not existing or running in browser from root
-        var getPersonalisedData = function(path, file, callback) {
+        var getPersonalisedData = function(path, file, useRoot, callback) {
           $ionicPlatform.ready(function() {
             if(ionic.Platform.platforms[0] == "browser") {
               console.log("Browser detected : Reading default settings");
@@ -101,12 +101,22 @@
 
                   // Gets information from static files in root directory if personalised file not found or is running in browser
                     if (error.message == "NOT_FOUND_ERR") {
-                      console.log("Reading default settings");
 
-                      var response = {
-                        result   : true,
-                        response : getData(path + "/" + file)
-                      };
+                      // Checks root directory only if parameters true -> avoid searching for e.g. level history in root directory
+                        if (useRoot == true) {
+                          console.log("Reading default settings from root");
+
+                          var response = {
+                            result   : true,
+                            response : getData(path + "/" + file)
+                          };
+                        } else {
+                          var response = {
+                            result   : false,
+                            response : error
+                          }
+                        }
+
                     } else {
                       var response = {
                         result   : false,

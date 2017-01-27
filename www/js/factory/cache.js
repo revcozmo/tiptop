@@ -58,14 +58,16 @@
                            },
             setGameTable : function(newGameTable) {level.table = newGameTable;},
             getLastLevel : function() {
-                            fileService.getPersonalisedData("history", "currentLevel.json", function(file) {
-                              if(file.response != false) {
+                            fileService.getPersonalisedData("history", "currentLevel.json", false, function(file) {
+                              if(file.result == true)
+                                console.log("Got last played level");
                                 // If there's a saved level existing set the content of save-file as current level information
                                   level = angular.fromJson(file.response);
                                   interface.setClicks(level.clickCount);
                                   // Change finishedLevel to false so the app knows when setting up everything that it don't has to get a new level
                                     interface.setLevelStatus(false);
                               } else {
+                                console.log("Error while getting last played level: " + file.response.message);
                                 // There's no save existing -> change finishedLevel to true so a new level is gotten when app is set up
                                   interface.setLevelStatus(true);
                               }
@@ -107,7 +109,7 @@
                       colorToIcon         = fileService.getData("settings/colorToIcon.json");
                       levelStock          = fileService.getData("settings/levelStock.json");
                       interface.getLastLevel();
-                      fileService.getPersonalisedData("settings", "settings.json", function(file) {
+                      fileService.getPersonalisedData("settings", "settings.json", true, function(file) {
                                     sets  = file.response;
                                     interface.setTranslation();
                                     console.log("CACHE SETUP DONE");
