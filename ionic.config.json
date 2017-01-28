@@ -2,6 +2,7 @@
   "name": "tiptop",
   "app_id": "",
   "watchPatterns": [
+    "www/scss/**/*",
     "www/**/*",
     "!www/lib/**/*"
   ],
