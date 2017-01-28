@@ -59,7 +59,7 @@
                             });
                            },
             setGameTable : function(newGameTable) {level.table = newGameTable;},
-            getLastLevel : function() {
+            getLastLevel : function(callback) {
                             fileService.getPersonalisedData("history", "currentLevel.json", false, function(file) {
                               if(file.result == true) {
                                 console.log("Got last played level");
@@ -73,6 +73,8 @@
                                 // There's no save existing -> change finishedLevel to true so a new level is gotten when app is set up
                                   interface.setLevelStatus(true);
                               }
+
+                              callback();
                             });
                            },
           // var : sets
@@ -110,12 +112,13 @@
                       buttonList.langList = fileService.getData("settings/lang.json");
                       colorToIcon         = fileService.getData("settings/colorToIcon.json");
                       levelStock          = fileService.getData("settings/levelStock.json");
-                      interface.getLastLevel();
-                      fileService.getPersonalisedData("settings", "settings.json", true, function(file) {
-                                    sets  = file.response;
-                                    interface.setTranslation();
-                                    console.log("CACHE SETUP DONE");
-                                    callback();
+                      interface.getLastLevel(function() {
+                                  fileService.getPersonalisedData("settings", "settings.json", true, function(file) {
+                                                sets  = file.response;
+                                                interface.setTranslation();
+                                                console.log("CACHE SETUP DONE");
+                                                callback();
+                                              });
                                   });
                     },
 
