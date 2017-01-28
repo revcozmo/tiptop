@@ -173,6 +173,88 @@
             });
         };
 
+      // Removes files/directories/recursivly directories -> check the mode param
+        var removeData = function(file, mode, callback) {
+          $ionicPlatform.ready(function() {
+            // Detects Browser
+              if (ionic.Platform.platforms[0] == "browser") {
+
+                console.log("Error: Deleting file or directory " + file + " not possible due to cordova incompatibility");
+
+                var response = {
+                  result : false,
+                  response : { message : "BROWSER_NOT_COMPATIBLE_WITH_CORDOVABROWSER_NOT_COMPATIBLE_WITH_CORDOVA" }
+                };
+
+                callback(response);
+
+              } else {
+
+                var response = {
+                  result   : false,
+                  response : {}
+                };
+
+                switch(mode) {
+                  case 0:
+                    // Removes file
+                      $cordovaFile.removeFile(storage, file)
+                        .then(function(success) {
+                          response.result   = true;
+                          response.response = success;
+                          console.log("Successfully deleted file or directory " + file);
+                          callback(response);
+                        }, function(error) {
+                          response.result   = false;
+                          response.response = error;
+                          console.log("Error: Deleting file or directory " + file);
+                          callback(response);
+                        });
+                    break;
+
+                  case 1:
+                    // Removes directory
+                    $cordovaFile.removeDir(storage, file)
+                      .then(function(success) {
+                        response.result   = true;
+                        response.response = success;
+                        console.log("Successfully deleted file or directory " + file);
+                        callback(response);
+                      }, function(error) {
+                        response.result   = false;
+                        response.response = error;
+                        console.log("Error: Deleting file or directory " + file);
+                        callback(response);
+                      });
+                    break;
+
+                  case 2:
+                    // Removes all files and directories from desired location
+                    $cordovaFile.removeRecursively(storage, file)
+                      .then(function(success) {
+                        response.result   = true;
+                        response.response = success;
+                        console.log("Successfully deleted file or directory " + file);
+                        callback(response);
+                      }, function(error) {
+                        response.result   = false;
+                        response.response = error;
+                        console.log("Error: Deleting file or directory " + file);
+                        callback(response);
+                      });
+                    break;
+
+                  default:
+                      response.result   = false;
+                      response.response = { message : "UNKNOWN_MODE" }
+                      callback(response);
+                    break;
+                }
+
+              }
+          });
+        };
+
     // Interface
-      return { getData, getPersonalisedData, setData };
+      return { getData, getPersonalisedData, setData, removeData };
   })

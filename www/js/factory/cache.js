@@ -42,41 +42,44 @@
             getLevelStatus : function() {return finishedLevel;},
             setLevelStatus : function(status) {finishedLevel = status;},
           // var : level
-            getColorList : function() {return level.colors;},
-            getGameTable : function() {return level.table;},
-            newLevel     : function(levelName) {
-                            level      = fileService.getData("level/" + this.getDiff() + "/" + levelName + ".json");
-                            clickCount = 0;
-                           },
-            saveLevel    : function() {
-                            var levelObj        = {};
-                            levelObj.table      = this.getGameTable();
-                            levelObj.colors     = this.getColorList();
-                            levelObj.clickCount = this.getClicks();
+            clearCurrentLevel : function(callback) {
+                                  fileService.removeData("history/currentLevel.json", 0, callback);
+                                },
+            getColorList      : function() {return level.colors;},
+            getGameTable      : function() {return level.table;},
+            newLevel          : function(levelName) {
+                                  level      = fileService.getData("level/" + interface.getDiff() + "/" + levelName + ".json");
+                                  clickCount = 0;
+                                },
+            saveLevel         : function() {
+                                  var levelObj        = {};
+                                  levelObj.table      = this.getGameTable();
+                                  levelObj.colors     = this.getColorList();
+                                  levelObj.clickCount = this.getClicks();
 
-                            fileService.setData("history", "currentLevel.json", angular.toJson(levelObj), function(answer) {
-                              console.log("Saving current level to storage/history/currentLevel.json:\nSuccess: " + answer.result + "\n" + angular.toJson(answer.response));
-                            });
-                           },
-            setGameTable : function(newGameTable) {level.table = newGameTable;},
-            getLastLevel : function(callback) {
-                            fileService.getPersonalisedData("history", "currentLevel.json", false, function(file) {
-                              if(file.result == true) {
-                                console.log("Got last played level");
-                                // If there's a saved level existing set the content of save-file as current level information
-                                  level = angular.fromJson(file.response);
-                                  interface.setClicks(level.clickCount);
-                                  // Change finishedLevel to false so the app knows when setting up everything that it don't has to get a new level
-                                    interface.setLevelStatus(false);
-                              } else {
-                                console.log("Error while getting last played level: " + file.response.message);
-                                // There's no save existing -> change finishedLevel to true so a new level is gotten when app is set up
-                                  interface.setLevelStatus(true);
-                              }
+                                  fileService.setData("history", "currentLevel.json", angular.toJson(levelObj), function(answer) {
+                                    console.log("Saving current level to storage/history/currentLevel.json:\nSuccess: " + answer.result + "\n" + angular.toJson(answer.response));
+                                  });
+                                },
+            setGameTable      : function(newGameTable) {level.table = newGameTable;},
+            getLastLevel      : function(callback) {
+                                  fileService.getPersonalisedData("history", "currentLevel.json", false, function(file) {
+                                    if(file.result == true) {
+                                      console.log("Got last played level");
+                                      // If there's a saved level existing set the content of save-file as current level information
+                                        level = angular.fromJson(file.response);
+                                        interface.setClicks(level.clickCount);
+                                        // Change finishedLevel to false so the app knows when setting up everything that it don't has to get a new level
+                                          interface.setLevelStatus(false);
+                                    } else {
+                                      console.log("Error while getting last played level: " + file.response.message);
+                                      // There's no save existing -> change finishedLevel to true so a new level is gotten when app is set up
+                                        interface.setLevelStatus(true);
+                                    }
 
-                              callback();
-                            });
-                           },
+                                    callback();
+                                  });
+                                },
           // var : sets
             getBlind : function() {return sets.blind;}, // Must be converted to boolean, because it is saved as string
             getDiff  : function() {return sets.diff;},

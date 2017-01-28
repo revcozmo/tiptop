@@ -20,7 +20,7 @@
             game.addClick();
 
           game.update();
-          
+
           // Save current progress into storage/history/currentLevel.json
             cache.saveLevel();
         };

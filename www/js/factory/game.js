@@ -22,6 +22,11 @@
               $rootScope.iconVisibility = "visibility:hidden";
             if(interface.playerWon()) {
               $rootScope.winBannerVisibility = "";
+              cache.clearCurrentLevel(function(answer) {
+                        // Unable to delete the level at first attempt -> update as long as cordova says it removed it so answer.result=true; if file was deleted answer.result=false cos of NOT_FOUND_ERR
+                          if (answer.result)
+                            interface.update();
+                    });
             } else
               $rootScope.winBannerVisibility = "visibility:hidden";
             console.log("gameTable : update done");
@@ -31,7 +36,8 @@
             // Generates random number between 0 and cache.getLevelStock()-1
               var random = Math.floor(Math.random()*cache.getLevelStock());
             cache.newLevel(random);
-            this.update();
+
+            interface.update();
           },
         // Changes Color of given button and its neighbours
           changeColors : function(pos) {
