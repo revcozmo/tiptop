@@ -13,6 +13,7 @@
       var level;          // cache for level cofiguration
       var colorList;      // cache for sequence of color changes
       var levelStock;     // cache for amount of available levels per difficulty
+      var levelRuleStock  // cache for amount of available rules for level generation per difficulty
       var unfinshedLevel; // saves wether there is a level saved, which was not finished before App was started again
 
     /*
@@ -105,6 +106,8 @@
             setTranslation : function() {translation = fileService.getData("lang/" + interface.getLang() + ".json");},
           // var : levelStock
             getLevelStock : function() {return levelStock[interface.getDiff()];},
+          // var : levelRuleStock
+            getLevelRuleStock : function() {return levelRuleStock[interface.getDiff()];},
           // Initialises the variables with data from .json
             setup : function(callback) {
                       clickCount          = 0;
@@ -115,6 +118,7 @@
                       buttonList.langList = fileService.getData("settings/lang.json");
                       colorToIcon         = fileService.getData("settings/colorToIcon.json");
                       levelStock          = fileService.getData("settings/levelStock.json");
+                      levelRuleStock      = fileService.getData("settings/levelRuleStock.json");
                       interface.getLastLevel(function() {
                                   fileService.getPersonalisedData("settings", "settings.json", true, function(file) {
                                                 sets  = file.response;
