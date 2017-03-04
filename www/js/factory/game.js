@@ -33,8 +33,13 @@
           },
         // Gets new level
           newLevel : function() {
+            /* OLD METHOD: Uses static level-files
             // Generates random number between 0 and cache.getLevelStock()-1
-              var random = Math.floor(Math.random()*cache.getLevelStock());
+              var random = Math.floor(Math.random()*cache.getLevelStock()); */
+
+            /* NEW METHOD: Uses static level-rule-files for generating random levels */
+            // Generates random number between 0 and cache.getLevelRuleStock()-1
+              var random = Math.floor(Math.random()*cache.getLevelRuleStock());
             cache.newLevel(random);
 
             interface.update();

@@ -3,7 +3,20 @@
 
     // INTERFACE
       var interface = {
+        createNewLevel : {
+          var levelObj = {
+            "level" : {
+              "table"  : [],
+              "colors" : []
+            },
+            "clicks" : 0,
+          };
 
+          // Some fucking crazy cool code
+
+
+          return levelObj;
+        },
       };
 
       return interface;

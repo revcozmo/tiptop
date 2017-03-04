@@ -1,9 +1,10 @@
 // Coordinates the data transferring between storage and controllers and controllers and controllers
-  app.factory('cache', function(fileService) {
+  app.factory('cache', function(fileService, generator) {
     /*
      *  VARIABLES
      */
       var clickCount;     // cache for click counter
+      var targetClicks    // cache for amount of clicks the generator used for creating the level
       var currentScreen;  // cache for screen selection
       var cfg;            // cache for config.json
       var sets;           // cache for settings/settings.json
@@ -48,9 +49,18 @@
                                 },
             getColorList      : function() {return level.colors;},
             getGameTable      : function() {return level.table;},
-            newLevel          : function(levelName) {
-                                  level      = fileService.getData("level/" + interface.getDiff() + "/" + levelName + ".json");
-                                  clickCount = 0;
+            newLevel          : function(fileName) {
+                                  /* OLD METHOD: Uses static level-files
+                                  level      = fileService.getData("level/" + interface.getDiff() + "/" + fileName + ".json"); */
+
+                                  /* NEW METHOD: Uses static level-rule-files for generating random levels */
+                                    var rules    = fileService.getData("level/rules/" + interface.getDiff() + "/" + fileName + ".json");
+                                    var levelObj = generator.createNewLevel(rules);
+
+                                    level        = levelObj.level;
+                                    interface.setTargetClicks(levelObj.clicks);
+
+                                  interface.setClicks(0);
                                 },
             saveLevel         : function() {
                                   var levelObj        = {};
@@ -101,6 +111,9 @@
                         // Update settings.json
                           fileService.setData("settings", "settings.json", angular.toJson(sets), function(answer) {});
                        },
+          // var : targetClicks
+            getTargetClicks : function() {return targetClicks;},
+            setTargetClicks : function(i) {targetClicks = i;},
           // var : translation
             getTranslation : function() {return translation;},
             setTranslation : function() {translation = fileService.getData("lang/" + interface.getLang() + ".json");},
