@@ -3,7 +3,7 @@
 
     // INTERFACE
       var interface = {
-        createNewLevel : {
+        createNewLevel : function(rules) {
           var levelObj = {
             "level" : {
               "table"  : [],
