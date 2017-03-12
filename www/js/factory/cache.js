@@ -40,6 +40,18 @@
             setScreen : function(newScreen) {currentScreen = newScreen;},
           // var : colorToIcon
             getIconLibary : function() {return colorToIcon;},
+            getAvailableColors : function() {
+                                    // Extracts the list of supported colors out of the color to icon mapping in colorToIcon.json
+                                      var iconLibary = interface.getIconLibary()
+                                      var availableColors = [];
+
+                                      var i = 0;
+                                      for(i in iconLibary) {
+                                        availableColors.push(iconLibary[i][0]);
+                                      }
+
+                                      return availableColors;
+                                 },
           // var : finishedLevel
             getLevelStatus : function() {return finishedLevel;},
             setLevelStatus : function(status) {finishedLevel = status;},
@@ -55,7 +67,7 @@
 
                                   /* NEW METHOD: Uses static level-rule-files for generating random levels */
                                     var rules    = fileService.getData("level/rules/" + interface.getDiff() + "/" + fileName + ".json");
-                                    var levelObj = generator.createNewLevel(rules);
+                                    var levelObj = generator.createNewLevel(rules, interface.getAvailableColors());
 
                                     level        = levelObj.level;
                                     interface.setTargetClicks(levelObj.clicks);
