@@ -93,10 +93,15 @@
 
               // If i > (rules.click)/2, function allowed to exit randomly -> amount of clicks needed for solving the level at minimum is random
                 if (i > (rules.clicks)/2) {
-                  // Probability of exiting before i = rules.click+1 increases with increasng i
-                  //    -> does not matter how large rules.clicks is, i can nearly reach the value of rules.clicks (especially for large rules.clicks) -> more diverse values for i
-// TODO PROBABILITY NEEDS TO BE REDESIGNED, the chance of no i = rules.clicks should be 0.1 for all possible values of rules.clicks
-                    if ( Math.random < (i/(4*rules.click)) ) // 4*rules.clicks randomly chosen
+                  // Probability of exiting before for-loop is done is for all i the same (Path Rule: p = p_1 * p_2 * ....)
+                  //    -> does not matter how large rules.clicks is, i can nearly reach the value of rules.clicks (especially for large rules.clicks) -> more diverse values of levelObj.clicks
+                  //
+                  // p_k is the probability of not exiting the shuffling-loop in the k^th loop (k is only counting the loops since i reached half the size of rules.clicks)
+                  // This algorith ensures that the event of exiting the loop has the same probability at any time -> All values of levelObj.clicks between n and rules.clicks are equaly probable
+                    var n   = Math.round(rules.clicks/2);
+                    var k   = i - n;
+                    var p_k = ( n - k )/( n + 1 - k );
+                    if ( Math.random =< 1 - p_k )
                       break;
                 }
             }
