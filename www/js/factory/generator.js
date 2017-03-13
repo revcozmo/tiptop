@@ -22,12 +22,12 @@
    // var : levelObj.table
      createBlankLevel = function(color, size) {
        // Creates game table array
-        var table = newArray(size);
+        var table = new Array(size);
 
        // Returns a row of the new game table
         var row = function(a) {
           // Creates rowArray
-            var array = newArray(size);
+            var array = new Array(size);
           // Adds single lines to the row
             for (var b = 0; b < size; b++) {
               array.push({ "pos"  : [a,b],
@@ -39,6 +39,8 @@
         for (var a = 0; a < size; a++) {
           table.push(row(a));
         }
+
+       return table;
      };
 
      // COLOR CHANGES
@@ -51,7 +53,7 @@
            return colorList[i+1];
         };
       // Changes Color of given button and its neighbours; Copied from gameCtrl in game.js
-        changeColors = function(x,y,gameTalbe,colorList) {
+        changeColors = function(x,y,gameTable,colorList) {
           // Changes Color of hit button and its neighbours
             try { gameTable[x + 1][y    ].color = getNextColor(gameTable[x + 1][y    ].color, colorList); } catch (error) {}
             try { gameTable[x - 1][y    ].color = getNextColor(gameTable[x - 1][y    ].color, colorList); } catch (error) {}
@@ -78,17 +80,17 @@
            *  STEP 1 : Creating already solved puzzle
            */
             // Creating a random colorList
-              levelObj.level.colors = createColorList();
+              levelObj.level.colors = createColorList(rules.colors, availableColors);
             // Creating level in only one random color
-              levelObj.level.table = createBlankLevel(levelObj.colors[0], rules.size);
+              levelObj.level.table = createBlankLevel(levelObj.level.colors[0], rules.size);
 
          /*
           * STEP 2 : Shuffle the blank game table as often as rules.clicks demands or less (randomly)
           */
             for (var i = 1; i < rules.clicks+1; i++) {
               // Determine random position on gameTalbe
-                var x = Math.floor( Math.random() * size );
-                var y = Math.floor( Math.random() * size );
+                var x = Math.floor( Math.random() * rules.size );
+                var y = Math.floor( Math.random() * rules.size );
                 levelObj.level.table = changeColors(x,y,levelObj.level.table,levelObj.level.colors);
 
               // If i > (rules.click)/2, function allowed to exit randomly -> amount of clicks needed for solving the level at minimum is random
