@@ -22,22 +22,23 @@
    // var : levelObj.table
      createBlankLevel = function(color, size) {
        // Creates game table array
-        var table = new Array(size);
+        var table = []; alert("table=" + table);
 
        // Returns a row of the new game table
         var row = function(a) {
           // Creates rowArray
-            var array = new Array(size);
+            var array = []; alert("array=" + array);
           // Adds single lines to the row
             for (var b = 0; b < size; b++) {
               array.push({ "pos"  : [a,b],
-                           "color": color });
+                           "color": color }); alert("array=" + array);
             }
+          return array;
         };
 
        // Adds the rows to the game table
         for (var a = 0; a < size; a++) {
-          table.push(row(a));
+          table.push(row(a)); alert("table=" + table);
         }
 
        return table;
