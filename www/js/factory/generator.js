@@ -101,7 +101,7 @@
                     var n   = Math.round(rules.clicks/2);
                     var k   = i - n;
                     var p_k = ( n - k )/( n + 1 - k );
-                    if ( Math.random =< 1 - p_k )
+                    if ( Math.random <= 1 - p_k )
                       break;
                 }
             }
