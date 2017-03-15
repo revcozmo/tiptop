@@ -88,25 +88,15 @@
          /*
           * STEP 2 : Shuffle the blank game table as often as rules.clicks demands or less (randomly)
           */
-            for (var i = 1; i < rules.clicks+1; i++) {
+            // The variable shuffles garantees that the amount of loops is random but based on the rule file
+            //  shuffles causes the loop to be done between half of rules.clicks (rounded upwards) and rules.clicks; all values of shuffle are equaly probable
+              var half     = rules.clicks/2;
+              var shuffles = Math.floor( ( Math.random() * (Math.floor(half) + 1) ) + Math.round(half) );
+            for (var i = 1; i < shuffles+1; i++) {
               // Determine random position on gameTalbe
                 var x = Math.floor( Math.random() * rules.size );
                 var y = Math.floor( Math.random() * rules.size );
                 levelObj.level.table = changeColors(x,y,levelObj.level.table,levelObj.level.colors);
-
-              // If i > (rules.click)/2, function allowed to exit randomly -> amount of clicks needed for solving the level at minimum is random
-                if (i > (rules.clicks)/2) {
-                  // Probability of exiting before for-loop is done is for all i the same (Path Rule: p = p_1 * p_2 * ....)
-                  //    -> does not matter how large rules.clicks is, i can nearly reach the value of rules.clicks (especially for large rules.clicks) -> more diverse values of levelObj.clicks
-                  //
-                  // p_k is the probability of not exiting the shuffling-loop in the k^th loop (k is only counting the loops since i reached half the size of rules.clicks)
-                  // This algorith ensures that the event of exiting the loop has the same probability at any time -> All values of levelObj.clicks between n and rules.clicks are equaly probable
-                    var n   = Math.round(rules.clicks/2);
-                    var k   = i - n;
-                    var p_k = ( n - k )/( n + 1 - k );
-                    if ( Math.random <= 1 - p_k )
-                      break;
-                }
             }
 
             // Saved how often gameTable was shuffeled -> minimal(?) amount of clicks needed for solving the level
