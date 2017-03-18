@@ -49,11 +49,10 @@
         <!-- Game Content -->
         <ion-side-menu-content>
           <div class="gameTable padding" id="{{appColor}}">
-            <div  class     = "row" id="royal"
+            <div  class     = "row"
                   ng-repeat = "row in gameTable">
               <div class     = "gameButton"
                    id        = "stable"
-                   style     = "width: 33% !important;"
                    ng-repeat = "column in row">
                 <div  class     = "col button button-{{column.color}}"
                       ng-click  = "buttonHit({{column.pos}})">
