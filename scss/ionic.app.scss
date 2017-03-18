@@ -21,7 +21,7 @@ $royal: red !default;
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
 // Include all of Ionic
-@import "../lib/ionic/scss/ionic";
+@import "../www/lib/ionic/scss/ionic";
 
 // Include own style-sheet
 @import "style.scss";
