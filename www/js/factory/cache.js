@@ -14,7 +14,8 @@
       var level;          // cache for level cofiguration
       var colorList;      // cache for sequence of color changes
       var levelStock;     // cache for amount of available levels per difficulty
-      var levelRuleStock  // cache for amount of available rules for level generation per difficulty
+      var levelRuleStock; // cache for amount of available rules for level generation per difficulty
+      var points;         // cache for points player won in total
       var unfinshedLevel; // saves wether there is a level saved, which was not finished before App was started again
 
     /*
@@ -133,6 +134,28 @@
             getLevelStock : function() {return levelStock[interface.getDiff()];},
           // var : levelRuleStock
             getLevelRuleStock : function() {return levelRuleStock[interface.getDiff()];},
+          // var : points
+            addPoints : function(newValue) {points = points + newValue;},
+            getPoints : function() {return points;},
+            calcPoints : function() {
+              // Calculates points from needed clicks, from generator used clicks and difficulty
+               var userClicks    = interface.getClicks();
+               var targetClicks  = interface.getTargetClicks();
+               var dif           = interface.getDiff();
+
+               // The formula is for 0 not defined
+                 if (userClicks = 0)
+                   userClicks = 1;
+               // Constants for calculations
+                 var a = 4;
+                 var b = 10000;
+               // Calculation
+               // This formula assigns to every value of userClicks a value of points
+               // If userClicks is less than targetClicks + targetClicks/a points will be positive
+               // If userClicks is more than targetClicks + targetClicks/a points will be negative
+               // How big the difference between the points you get for x and x+1 clicks increases with the grade of difficulty
+                 return ( (targetClicks/userClicks) - ( targetClicks / (targetClicks + (targetClicks/a)) ) ) * b * (dif+1);
+            },
           // Initialises the variables with data from .json
             setup : function(callback) {
                       clickCount          = 0;
