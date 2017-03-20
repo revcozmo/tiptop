@@ -72,6 +72,7 @@
           <div id="gameOver" class="bar bar-{{appColor}} row button button-full" ng-click="levelRequest()" style="{{winBannerVisibility}}"><!-- bar as banner and row and column for centering h1 -->
             <div class="col col-center">
               <h1 id="gameOverTitle" align="center">Tip Top!</h1>
+              <span class="text">{{totalPoints}} | {{clickCount}} | {{newPoints}}</span>
             </div>
           </div>
         </ion-side-menu-content>

@@ -21,7 +21,7 @@
                           } else {
                             // Caclulates the points player gained and adds them to total points
                               cache.addPoints(cache.calcPoints());
-                              alert("Points: " + cache.calcPoints() + "\nPoints total: " + cache.getPoints());
+                              $rootScope.totalPoints = cache.getPoints();
                           }
                     });
             } else
@@ -35,7 +35,7 @@
             $rootScope.buttonID   = 0;
             $rootScope.gameTable  = cache.getGameTable();
             $rootScope.clickCount = cache.getClicks();
-            $rootScope.points     = cache.calcPoints();
+            $rootScope.newPoints  = cache.calcPoints();
             $rootScope.appColor   = $rootScope.gameTable[1][1].color;
 
             console.log("gameTable : update done");
