@@ -135,7 +135,12 @@
           // var : levelRuleStock
             getLevelRuleStock : function() {return levelRuleStock[interface.getDiff()];},
           // var : points
-            addPoints : function(newValue) {points = points + newValue;},
+            addPoints : function(newValue) {
+                          points = points + newValue;
+
+                          // Save points to .json
+                            fileService.setData("score", "points.json", angular.toJson(points), function(answer) {});
+                        },
             getPoints : function() {return points;},
             calcPoints : function() {
               // Calculates points from needed clicks, from generator used clicks and difficulty
@@ -170,9 +175,19 @@
                       interface.getLastLevel(function() {
                                   fileService.getPersonalisedData("settings", "settings.json", true, function(file) {
                                                 sets  = file.response;
-                                                interface.setTranslation();
-                                                console.log("CACHE SETUP DONE");
-                                                callback();
+
+                                                fileService.getPersonalisedData("score", "points.json", true, function(file) {
+                                                              if (file.result == true) {
+                                                                points = file.response;
+                                                              } else {
+                                                                points = 0;
+                                                              }
+                                                              
+                                                              interface.setTranslation();
+                                                              console.log("CACHE SETUP DONE");
+                                                              callback();
+                                                });
+
                                               });
                                   });
                     },

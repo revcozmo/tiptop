@@ -12,14 +12,6 @@
       var interface = {
         // Shows gameTable
           update : function() {
-            $rootScope.buttonID   = 0;
-            $rootScope.gameTable  = cache.getGameTable();
-            $rootScope.clickCount = cache.getClicks();
-            $rootScope.appColor   = $rootScope.gameTable[1][1].color;
-            if(cache.getBlind()) {
-              $rootScope.iconVisibility = "";
-            } else
-              $rootScope.iconVisibility = "visibility:hidden";
             if(interface.playerWon()) {
               $rootScope.winBannerVisibility = "";
               cache.clearCurrentLevel(function(answer) {
@@ -27,8 +19,22 @@
                           if (answer.result)
                             interface.update();
                     });
+              cache.addPoints(cache.calcPoints());
+              alert("Points: " cache,calcPoints() + "\nPoints total: " + cache.getPoints());
             } else
               $rootScope.winBannerVisibility = "visibility:hidden";
+
+            if(cache.getBlind()) {
+              $rootScope.iconVisibility = "";
+            } else
+              $rootScope.iconVisibility = "visibility:hidden";
+
+            $rootScope.buttonID   = 0;
+            $rootScope.gameTable  = cache.getGameTable();
+            $rootScope.clickCount = cache.getClicks();
+            $rootScope.points     = cache.calcPoints();
+            $rootScope.appColor   = $rootScope.gameTable[1][1].color;
+
             console.log("gameTable : update done");
           },
         // Gets new level
