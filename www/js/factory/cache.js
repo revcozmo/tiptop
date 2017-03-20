@@ -149,8 +149,9 @@
                var dif           = interface.getDiff();
 
                // The formula is for 0 not defined
-                 if (userClicks = 0)
+                 if (userClicks == 0)
                    userClicks = 1;
+
                // Constants for calculations
                  var a = 4;
                  var b = 10000;
@@ -159,7 +160,7 @@
                // If userClicks is less than targetClicks + targetClicks/a points will be positive
                // If userClicks is more than targetClicks + targetClicks/a points will be negative
                // How big the difference between the points you get for x and x+1 clicks increases with the grade of difficulty
-                 return ( (targetClicks/userClicks) - ( targetClicks / (targetClicks + (targetClicks/a)) ) ) * b * (dif+1);
+                 return Math.round(  ( (targetClicks/userClicks) - ( targetClicks / (targetClicks + (targetClicks/a)) ) ) * b * (dif+1)  );
             },
           // Initialises the variables with data from .json
             setup : function(callback) {
