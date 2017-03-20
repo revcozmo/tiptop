@@ -16,11 +16,14 @@
               $rootScope.winBannerVisibility = "";
               cache.clearCurrentLevel(function(answer) {
                         // Unable to delete the level at first attempt -> update as long as cordova says it removed it so answer.result=true; if file was deleted answer.result=false cos of NOT_FOUND_ERR
-                          if (answer.result)
+                          if (answer.result) {
                             interface.update();
+                          } else {
+                            // Caclulates the points player gained and adds them to total points
+                              cache.addPoints(cache.calcPoints());
+                              alert("Points: " + cache.calcPoints() + "\nPoints total: " + cache.getPoints());
+                          }
                     });
-              cache.addPoints(cache.calcPoints());
-              alert("Points: " cache,calcPoints() + "\nPoints total: " + cache.getPoints());
             } else
               $rootScope.winBannerVisibility = "visibility:hidden";
 

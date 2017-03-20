@@ -176,18 +176,17 @@
                                   fileService.getPersonalisedData("settings", "settings.json", true, function(file) {
                                                 sets  = file.response;
 
-                                                fileService.getPersonalisedData("score", "points.json", true, function(file) {
+                                                fileService.getPersonalisedData("score", "points.json", false, function(file) {
                                                               if (file.result == true) {
                                                                 points = file.response;
                                                               } else {
                                                                 points = 0;
                                                               }
-                                                              
+
                                                               interface.setTranslation();
                                                               console.log("CACHE SETUP DONE");
                                                               callback();
-                                                });
-
+                                                            });
                                               });
                                   });
                     },
