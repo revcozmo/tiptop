@@ -22,4 +22,9 @@
         cache.setLang(newLang);
         view.update.lang();
       };
+
+    // Toogles wether clickCount or points will be shown
+      $scope.toggleScore = function() {
+        // TODO
+      }
   })

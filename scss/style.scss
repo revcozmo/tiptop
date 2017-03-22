@@ -52,6 +52,15 @@ height:  !important;
   left: 10%;
   border-radius: 5%; }
 
+.footerButton {
+  width:50%;
+  margin-left:25%;
+  position:absolute !important;
+  left: -5px;
+  font-weight:normal !important;
+  font-size:40px !important;
+}
+
 #gameOver {
   position: fixed !important;
   z-index: 1000   !important;
