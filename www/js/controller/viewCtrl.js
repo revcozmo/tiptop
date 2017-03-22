@@ -25,6 +25,11 @@
 
     // Toogles wether clickCount or points will be shown
       $scope.toggleScore = function() {
-        // TODO
+        if (cache.getScoreToggle()) {
+          cache.setScoreToggle(false);
+        } else {
+          cache.setScoreToggle(true);
+        }
+        view.update.clicks();
       }
   })

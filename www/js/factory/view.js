@@ -8,7 +8,11 @@
               $rootScope.translation = cache.getTranslation();
             },
             clicks  : function() {
-              $rootScope.clickCount  = cache.getClicks();
+              if (cache.getScoreToggle()) {
+                $rootScope.score  = cache.getClicks();
+              } else {
+                $rootScope.score  = cache.calcPoints();
+              }
             },
             all     : function() {
               this.lang();

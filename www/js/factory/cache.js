@@ -108,6 +108,7 @@
             getBlind : function() {return sets.blind;}, // Must be converted to boolean, because it is saved as string
             getDiff  : function() {return sets.diff;},
             getLang  : function() {return sets.lang;},
+            getScoreToggle : function() {return sets.showClicks;},
             setBlind : function(newBlind) {
                         sets.blind = newBlind;
                         // Update settings.json
@@ -124,6 +125,11 @@
                         // Update settings.json
                           fileService.setData("settings", "settings.json", angular.toJson(sets), function(answer) {});
                        },
+            setScoreToggle : function(newValue) {
+                            sets.showClicks = newValue;
+                            // Update settings.json
+                              fileService.setData("settings", "settings.json", angular.toJson(sets), function(answer) {});
+            },
           // var : targetClicks
             getTargetClicks : function() {return targetClicks;},
             setTargetClicks : function(i) {targetClicks = i;},

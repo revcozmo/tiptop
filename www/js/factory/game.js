@@ -34,8 +34,11 @@
 
             $rootScope.buttonID   = 0;
             $rootScope.gameTable  = cache.getGameTable();
-            $rootScope.clickCount = cache.getClicks();
-            $rootScope.newPoints  = cache.calcPoints();
+            if (cache.getScoreToggle()) {
+              $rootScope.score  = cache.getClicks();
+            } else {
+              $rootScope.score  = cache.calcPoints();
+            }
             $rootScope.appColor   = $rootScope.gameTable[1][1].color;
 
             console.log("gameTable : update done");
