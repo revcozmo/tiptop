@@ -160,7 +160,7 @@
 
                // Constants for calculations
                  var a = 4;
-                 var b = 10000;
+                 var b = 100;
                // Calculation
                // This formula assigns to every value of userClicks a value of points
                // If userClicks is less than targetClicks + targetClicks/a points will be positive

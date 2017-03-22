@@ -46,7 +46,8 @@
 
       <!-- Header -->
       <div class="bar bar-header" ng-controller="gameCtrl">
-        <button class="button button-icon icon-left ion-navicon"></button>{{test}}
+        <button class="button button-icon icon-left ion-navicon"></button>
+        <div class="padding-top" style="font-size:30px; margin-left:35%;">{{totalPoints}}</div>
       </div>
 
       <!-- Content -->
@@ -146,7 +147,7 @@
       <!-- Footer -->
       <div class="bar bar-footer bar-{{appColor}} padding-bottom">
         <button ng-click="showScreen('help')" class="button button-icon icon-left ion-help-circled"></button>   <!-- Help button -->
-        <h1     ng-click="toggleScore()" class="footerButton button button-clear">{{score}}</h1>                                                     <!-- Click counter -->
+        <h1     ng-click="toggleScore()" class="footerButton button button-clear">{{score}}</h1>                <!-- Click counter -->
         <button ng-click="showScreen('settings')" class="button button-icon icon-right ion-gear-b"></button>    <!-- Settings Button -->
       </div>
 

@@ -12,6 +12,7 @@
       var interface = {
         // Shows gameTable
           update : function() {
+            $rootScope.totalPoints = cache.getPoints();
             if(interface.playerWon()) {
               $rootScope.winBannerVisibility = "";
               cache.clearCurrentLevel(function(answer) {
@@ -21,7 +22,6 @@
                           } else {
                             // Caclulates the points player gained and adds them to total points
                               cache.addPoints(cache.calcPoints());
-                              $rootScope.totalPoints = cache.getPoints();
                           }
                     });
             } else
@@ -45,6 +45,13 @@
           },
         // Gets new level
           newLevel : function() {
+            // Check if player tries to avoid negative points by requestig new level
+            // Try is needed because playerWon throws an error if it is called after the setup and before a level was generated
+              try{
+                if (!interface.playerWon() && cache.calcPoints() < 0) {
+                  cache.addPoints(cache.calcPoints());
+                }
+              } catch(error) {}
             /* OLD METHOD: Uses static level-files
             // Generates random number between 0 and cache.getLevelStock()-1
               var random = Math.floor(Math.random()*cache.getLevelStock()); */
