@@ -9838,8 +9838,7 @@ a.button {
   padding: 2px;
   border-radius: 5px;
   width: 100%;
-  height: !important;
-  max-width: 33%; }
+  height: !important; }
 
 .container {
   display: flex;
@@ -9854,9 +9853,9 @@ a.button {
   max-width: 33%; }
 
 .gameTable {
-  width: 90%          !important;
-  height: 0          !important;
-  padding-bottom: 90% !important;
+  width: 90vw          !important;
+  height: 90vw          !important;
+  padding-bottom: 0% !important;
   margin: -50% 0% 0% -5%;
   position: absolute;
   top: 50%;
