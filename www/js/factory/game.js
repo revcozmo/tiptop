@@ -12,7 +12,6 @@
       var interface = {
         // Shows gameTable
           update : function() {
-            $rootScope.totalPoints = cache.getPoints();
             if(interface.playerWon()) {
               $rootScope.winBannerVisibility = "";
               cache.clearCurrentLevel(function(answer) {
@@ -22,6 +21,7 @@
                           } else {
                             // Caclulates the points player gained and adds them to total points
                               cache.addPoints(cache.calcPoints());
+                              $rootScope.totalPoints = cache.getPoints();
                           }
                     });
             } else
@@ -40,6 +40,7 @@
               $rootScope.score  = cache.calcPoints();
             }
             $rootScope.appColor   = $rootScope.gameTable[1][1].color;
+            $rootScope.totalPoints = cache.getPoints();
 
             console.log("gameTable : update done");
           },
