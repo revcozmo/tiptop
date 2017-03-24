@@ -9837,8 +9837,7 @@ a.button {
   margin: 5px 5px 5px 5px;
   padding: 2px;
   border-radius: 5px;
-  width: 100%;
-  height: !important; }
+  width: %; }
 
 .container {
   display: flex;
