@@ -9832,29 +9832,24 @@ a.button {
   font-size: 40px    !important;
   color: #ffffff !important; }
 
-/* GameTable buttons */
+/* GameTable */
+.size-3 {
+  width: 26.66667vw;
+  height: 25.66667vw; }
+
+.size-5 {
+  width: 14.7vw;
+  height: 14.7vw; }
+
 .gameButton {
-  margin: 5px 5px 5px 5px;
+  margin: 1vw;
   padding: 2px;
-  border-radius: 5px;
-  width: %; }
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  height: 50%;
-  width: 100%; }
-
-.container div {
-  background: #555;
-  border: solid 1px #000;
-  width: 100%;
-  max-width: 33%; }
+  border-radius: 5px; }
 
 .gameTable {
-  width: 90vw          !important;
-  height: 90vw          !important;
-  padding-bottom: 0% !important;
+  padding: 2vw;
+  width: 90vw !important;
+  height: 90vw !important;
   margin: -50% 0% 0% -5%;
   position: absolute;
   top: 50%;

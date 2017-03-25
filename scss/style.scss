@@ -15,38 +15,38 @@
   font-size: 40px    !important;
   color: #ffffff !important; }
 
-/* GameTable buttons */
+/* GameTable */
+$gameTableWidth: 90vw;
+$padding: 2vw;
+$margin: 1vw;
+.size-3 {
+  $buttons: 3;
+  $buttonWidth: ( $gameTableWidth - $margin*2*$buttons - 2*$padding)/$buttons;
+  width: $buttonWidth;
+  height: $buttonWidth - 1vw;
+}
+.size-5 {
+  $buttons: 5;
+  $buttonWidth: ( $gameTableWidth - $margin*2*$buttons - 2*$padding)/$buttons;
+  width: $buttonWidth - 0.5vw;
+  height: $buttonWidth - 0.5vw;
+}
 .gameButton {
-  margin: 5px 5px 5px 5px;
+  margin: $margin;
   padding: 2px;
   border-radius: 5px;
-  width: %;
-}
-
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  height: 50%;
-  width: 100%;
-}
-
-.container div {
-  background:#555;
-  border: solid 1px #000;
-  width: 100%;
-  max-width: 33%;
 }
 
 .gameTable {
-  width: 90vw          !important;
-  height: 90vw          !important;
-  padding-bottom: 0% !important;
+  padding: $padding;
+  width: $gameTableWidth       !important;
+  height: $gameTableWidth      !important;
   margin: -50% 0% 0% -5%;
   position: absolute;
   top: 50%;
   left: 10%;
-  border-radius: 5%; }
+  border-radius: 5%;
+}
 
 .footerButton {
   width:50%;
