@@ -15,6 +15,7 @@
 
     <!-- Additional styling sheet -->
     <link href="/scss/style.scss" rel="text/css">
+    <link href="/scss/menuPopover.scss" rel="text/css">
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -71,7 +72,8 @@
           </div>
 
           <!-- Game Over -->
-          <div id="gameOver" class="bar bar-{{appColor}} row button button-full" ng-click="levelRequest()" style="{{winBannerVisibility}}"><!-- bar as banner and row and column for centering h1 -->
+          <!-- bar as banner and row and column for centering h1 -->
+          <div id="gameOver" class="bar bar-{{appColor}} row button button-full" ng-click="levelRequest()" style="{{winBannerVisibility}}">
             <div class="col col-center">
               <h1 id="gameOverTitle" align="center">Tip Top!</h1>
               <span class="text">{{totalPoints}}</span>

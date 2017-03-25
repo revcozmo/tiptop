@@ -9905,3 +9905,23 @@ a.button {
 
 #dark {
   background-color: #444 !important; }
+
+.menuListButton {
+  color: #444 !important;
+  font-size: 17px !important;
+  margin: -10px 0px -15px -10px !important; }
+
+ion-popover-view.fit {
+  height: auto !important; }
+
+ion-popover-view.fit ion-content {
+  position: relative !important; }
+
+.platform-android ion-popover-view.fit {
+  margin-top: 10px !important; }
+
+.platform-ios ion-popover-view.fit .item:first-child {
+  border-radius: 10px 10px 0 0; }
+
+.platform-ios ion-popover-view.fit .item:last-child {
+  border-radius: 0 0 10px 10px; }
