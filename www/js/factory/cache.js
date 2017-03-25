@@ -166,7 +166,7 @@
                // If userClicks is less than targetClicks + targetClicks/a points will be positive
                // If userClicks is more than targetClicks + targetClicks/a points will be negative
                // How big the difference between the points you get for x and x+1 clicks increases with the grade of difficulty
-                 return Math.round(  ( (targetClicks/userClicks) - ( targetClicks / (targetClicks + (targetClicks/a)) ) ) * b * (dif+1)  );
+                 return Math.round(  ( (targetClicks/userClicks) - ( targetClicks / (targetClicks + (targetClicks/a)) ) ) * b * (dif+1)  ) * 10;
             },
           // Initialises the variables with data from .json
             setup : function(callback) {
