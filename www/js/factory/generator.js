@@ -96,7 +96,11 @@
               // Determine random position on gameTalbe
                 var x = Math.floor( Math.random() * rules.size );
                 var y = Math.floor( Math.random() * rules.size );
-                levelObj.level.table = changeColors(x,y,levelObj.level.table,levelObj.level.colors);
+                // Selected button will be shuffled till it takes user only one click to get to originally situation
+                // This is important for point calculation, this garantees that the user can achieve the target
+                //  clicks (amount of clicks the generator needed)
+                  for (var j = 0; j < rules.colors - 1; j++)
+                    levelObj.level.table = changeColors(x,y,levelObj.level.table,levelObj.level.colors);
             }
 
             // Saved how often gameTable was shuffeled -> minimal(?) amount of clicks needed for solving the level
