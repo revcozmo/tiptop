@@ -9856,6 +9856,9 @@ a.button {
   left: 10%;
   border-radius: 5%; }
 
+.menuButton {
+  margin-left: 2vw; }
+
 .footerButton {
   width: 50%;
   margin-left: 25%;

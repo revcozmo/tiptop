@@ -45,15 +45,16 @@
     <ion-pane>
 
       <!-- Header -->
-      <div class="bar bar-header" ng-controller="gameCtrl">
-        <button class="button button-icon icon-left ion-navicon"></button>
-        <div class="padding-top" style="font-size:30px; margin-left:35%;">{{totalPoints}}</div>
-      </div>
 
       <!-- Content -->
       <ion-side-menus ng-controller="gameCtrl">
-        <!-- Game Content -->
+
         <ion-side-menu-content>
+          <!-- Menu button in the upper left corners -->
+          <button class="button button-icon icon ion-navicon menuButton"></button>
+          <div class="padding-top" style="font-size:30px; margin-left:35%;">{{totalPoints}}</div>
+
+          <!-- Game Content -->
           <div class="gameTable" id="{{appColor}}">
             <div  class     = "row"
                   ng-repeat = "row in gameTable">
