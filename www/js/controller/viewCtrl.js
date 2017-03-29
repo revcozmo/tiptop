@@ -18,7 +18,7 @@
       };
 
     // Menu Popover
-      $ionicPopover.fromTemplateUrl('www/templates/menuPopover.html', {
+      $ionicPopover.fromTemplateUrl('templates/menuPopover.html', {
         scope: $scope
       }).then(function(popover) {
         $scope.popover = popover;
