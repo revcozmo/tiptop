@@ -15,6 +15,12 @@
     "Color Blindness"
   ],
 
+  "menu" : [
+    "Ranking",
+    "New Level",
+    "Username"
+  ],
+
   "diff" : [
     "Easy",
     "Normal",
