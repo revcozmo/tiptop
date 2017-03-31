@@ -21,6 +21,12 @@
     "Username"
   ],
 
+  "namePopup" : [
+    "User Name",
+    "Enter a user name",
+    "Joe Bloggs"
+  ],
+
   "diff" : [
     "Easy",
     "Normal",

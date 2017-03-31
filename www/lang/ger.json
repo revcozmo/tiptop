@@ -21,6 +21,12 @@
     "Benutzername"
   ],
 
+  "namePopup" : [
+    "Benutzername",
+    "Gib einen Benutzernamen ein",
+    "Max Mustermann"
+  ],
+
   "diff" : [
     "Leicht",
     "Normal",

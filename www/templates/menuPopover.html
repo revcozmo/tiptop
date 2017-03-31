@@ -2,14 +2,14 @@
 <div>
     <ion-list>
 
-      <ion-item>
+      <ion-item> <!-- Show Ranking -->
         <p class="button button-clear menuListButton" ng-click="">{{translation.menu[j=0]}}</p>
       </ion-item>
-      <ion-item>
+      <ion-item> <!-- New Level -->
         <p class="button button-clear menuListButton" ng-click="closePopover();levelRequest();">{{translation.menu[1]}}</p>
       </ion-item>
-      <ion-item>
-        <p class="button button-clear menuListButton" ng-click="">{{translation.menu[2]}}</p>
+      <ion-item> <!-- User Name -->
+        <p class="button button-clear menuListButton" ng-click="closePopover();enterName();">{{translation.menu[2]}}</p>
       </ion-item>
 
     </ion-list>
