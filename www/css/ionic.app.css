@@ -9909,24 +9909,17 @@ a.button {
 .menuListButton {
   color: #444 !important;
   font-size: 17px !important;
-  margin: -10px 0px -15px -10px !important;
-  background-color: teal !important; }
-
-ion-list {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  flex-direction: column; }
+  margin: -10px 0px -15px -10px !important; }
 
 ion-popover-view.fit {
-  height: auto !important;
+  height: 0 !important;
   width: auto !important;
-  border-radius: 10px !important;
-  background-color: blue; }
+  border-radius: 10px !important; }
+
+.platform-ios ion-popover-view.fit {
+  margin-top: -5px !important; }
 
 ion-popover-view.fit div {
-  position: relative !important;
-  background-color: red;
   border-radius: 10px !important; }
 
 ion-popover-view.fit .item:first-child {
@@ -9934,3 +9927,8 @@ ion-popover-view.fit .item:first-child {
 
 ion-popover-view.fit .item:last-child {
   border-radius: 0 0 10px 10px; }
+
+ion-item {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-end !important; }

@@ -2,33 +2,29 @@
   color: $dark !important;
   font-size: 17px !important;
   margin: -10px 0px -15px -10px !important;
-  background-color: teal !important;
 }
 
-ion-list {
-
-      display:flex;
-      justify-content:center;
-      align-items:flex-end;
-      flex-direction: column;
-}
-
-// Copied from https://forum.ionicframework.com/t/popover-sizing/8251/8 16.03.2017; 00:20
+// Partly Copied from https://forum.ionicframework.com/t/popover-sizing/8251/8 16.03.2017; 00:20
+// For centering the text: http://howtocenterincss.com/#contentType=div&horizontal=center&vertical=middle&browser.IE=none 31.3.2017; 22:40
 ion-popover-view.fit {
-
-  height: auto !important;
+  height: 0 !important;
   width:  auto !important;
   border-radius: 10px !important;
-background-color: blue;
+}
+.platform-ios ion-popover-view.fit {
+  margin-top: -5px !important;
 }
 ion-popover-view.fit div {
-  position: relative !important;
-background-color: red;
   border-radius: 10px !important;
 }
 ion-popover-view.fit .item:first-child {
   border-radius: 10px 10px 0 0;
 }
 ion-popover-view.fit .item:last-child {
-   border-radius: 0 0 10px 10px;
+  border-radius: 0 0 10px 10px;
+}
+ion-item {
+  display:flex !important;
+  justify-content:center !important;
+  align-items:flex-end !important;
 }
