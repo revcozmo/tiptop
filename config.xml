@@ -21,6 +21,15 @@
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
   <platform name="android">
+    <splash src="res/drawable-land-hdpi" density="land-hdpi"/>
+    <splash src="res/drawable-land-ldpi" density="land-ldpi"/>
+    <splash src="res/drawable-land-mdpi" density="land-mdpi"/>
+    <splash src="res/drawable-land-xhdpi" density="land-xhdpi"/>
+
+    <splash src="res/drawable-port-hdpi" density="port-hdpi"/>
+    <splash src="res/drawable-port-ldpi" density="port-ldpi"/>
+    <splash src="res/drawable-port-mdpi" density="port-mdpi"/>
+    <splash src="res/drawable-port-xhdpi" density="port-xhdpi"/>
   </platform>
   <allow-navigation href="http://10.254.209.157:8100"/>
 </widget>
