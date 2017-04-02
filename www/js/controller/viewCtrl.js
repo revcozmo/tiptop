@@ -55,8 +55,11 @@
 
         }).then(function(res) {
 
+          if (res == undefined || res == "")
+            return;
+
           alert("Name: " + res);
-          
+
         });
       }
 
