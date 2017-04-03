@@ -5,6 +5,23 @@
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('app', ['ionic', 'ngCordova']);
 
+app.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('index', {
+      url: '/help',
+      templateUrl: 'templates/help/main.html'
+    })
+    .state('about', {
+      url: '/help/about',
+      templateUrl: 'templates/help/about.html'
+    })
+    .state('rules', {
+      url: '/help/rules',
+      templateUrl: 'templates/help/rules.html'
+    });
+
+    $urlRouterProvider.otherwise("/help");
+});
 
 app.run(function($ionicPlatform, cache, view, game) {
   $ionicPlatform.ready(function() {

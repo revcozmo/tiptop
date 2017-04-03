@@ -1,0 +1,17 @@
+<ion-view ng-controller="gameCtrl">
+  <ion-nav-bar class="bar-{{appColor}}">
+    <ion-nav-back-button><span style="font-size: 20px !important;">{{translation.txt[3]}}</span></ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content id="{{appColor}}" ng-controller="viewCtrl" class="padding">
+    <br>
+    <span class="text"  >{{translation.txt[4]}}: {{author}}</span>
+    <br>
+    <span class="text"  >{{translation.txt[5]}}: {{version}}</span>
+    <br>
+    <span class="text"  >{{translation.txt[6]}} {{thanks}}</span>
+    <br>
+    <br>
+    <span class="text"  >{{translation.txt[7]}} {{email}}.</span>
+    <br><br><br><br>
+  </ion-content>
+</ion-view>

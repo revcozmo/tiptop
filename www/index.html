@@ -83,23 +83,9 @@
 
         <!-- Help -->
         <ion-side-menu side="left" class="screen help">
-          <ion-content id="{{appColor}}" class="padding">
-            <h2 class="heading" >{{translation.txt[i=0]}}</h2>             <!-- i=0 -->
-            <span class="text"  >{{translation.txt[i=i+1]}}</span>
-            <br>
-            <span class="text"  >{{translation.txt[i=i+1]}}</span>
-            <br>
-            <br>
-            <h2 class="heading" >{{translation.txt[i=i+1]}}</h2>
-            <span class="text"  >{{translation.txt[i=i+1]}}: {{author}}</span>
-            <br>
-            <span class="text"  >{{translation.txt[i=i+1]}}: {{version}}</span>
-            <br>
-            <span class="text"  >{{translation.txt[i=i+1]}} {{thanks}}</span>
-            <br>
-            <br>
-            <span class="text"  >{{translation.txt[i=i+1]}} {{email}}.</span>
-            <br><br><br><br>
+          <ion-content id="{{appColor}}">
+            <!-- Content organised in templates -> templates/help/ -->
+            <ion-nav-view><!-- Include template here --></ion-nav-view>
           </ion-content>
         </ion-side-menu>
 
