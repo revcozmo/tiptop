@@ -168,11 +168,14 @@
                // How big the difference between the points you get for x and x+1 clicks increases with the grade of difficulty
                  return Math.round(  ( (targetClicks/userClicks) - ( targetClicks / (targetClicks + (targetClicks/a)) ) ) * b * (dif+1)  ) * 10;
             },
-          // Initialises the variables with data from .json
+          // Initialises the variables with data from .json and the apps version from the config.xml
             setup : function(callback) {
                       clickCount          = 0;
                       currentScreen       = "game";
                       cfg                 = fileService.getData("config.json");
+                      cordova.getAppVersion.getVersionNumber().then(function (version) {
+                                                                  cfg.version = version;
+                                                                });
                       buttonList          = {diffList:[], langList:[]};
                       buttonList.diffList = fileService.getData("settings/difficulty.json");
                       buttonList.langList = fileService.getData("settings/lang.json");
