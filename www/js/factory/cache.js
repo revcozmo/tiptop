@@ -173,9 +173,10 @@
                       clickCount          = 0;
                       currentScreen       = "game";
                       cfg                 = fileService.getData("config.json");
-                      cordova.getAppVersion.getVersionNumber().then(function (version) {
-                                                                  cfg.version = version;
-                                                                });
+                      if(window.cordova)
+                        cordova.getAppVersion.getVersionNumber().then(function (version) {
+                                                                    cfg.version = version;
+                                                                  });
                       buttonList          = {diffList:[], langList:[]};
                       buttonList.diffList = fileService.getData("settings/difficulty.json");
                       buttonList.langList = fileService.getData("settings/lang.json");
