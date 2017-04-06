@@ -22,6 +22,7 @@
                             // Caclulates the points player gained and adds them to total points
                               cache.addPoints(cache.calcPoints());
                               $rootScope.totalPoints = cache.getPoints();
+                              alert("Clicks/Target: " + cache.getClicks() + "/" + cache.getTargetClicks() );
                           }
                     });
             } else

@@ -153,20 +153,28 @@
                var userClicks    = interface.getClicks();
                var targetClicks  = interface.getTargetClicks();
                var dif           = interface.getDiff();
+               var size          = interface.getGameTable().length;
+               // Used for adjusting the root of the formula
+                var stretch       = 4*(dif+1)+4
+               // Used for moving the root along the axis
+               // -> How far player can miss the targetClicks and still get positive points
+               //    depends on gameTable size and targetClicks
+                var a = (size - 3) *5* targetClicks / 2 + (5 - size) *targetClicks / 4
 
                // The formula is for 0 not defined
                  if (userClicks == 0)
-                   userClicks = 1;
+                   userClicks = 0.9;
 
                // Constants for calculations
-                 var a = 4;
-                 var b = 100;
-               // Calculation
+                 var b = 10;
                // This formula assigns to every value of userClicks a value of points
-               // If userClicks is less than targetClicks + targetClicks/a points will be positive
-               // If userClicks is more than targetClicks + targetClicks/a points will be negative
+               // If userClicks is less than targetClicks + a points will be positive
+               // If userClicks is more than targetClicks + a points will be negative
                // How big the difference between the points you get for x and x+1 clicks increases with the grade of difficulty
-                 return Math.round(  ( (targetClicks/userClicks) - ( targetClicks / (targetClicks + (targetClicks/a)) ) ) * b * (dif+1)  ) * 10;
+                 return Math.round( ( (a+targetClicks) / (userClicks / stretch) - stretch) * (dif + 1) * b ) *10;
+                 // Old Formula; b=100, a=4
+                 // return Math.round(  ( (targetClicks/userClicks) - ( targetClicks / (targetClicks + (targetClicks/a)) ) ) * b * (dif+1)  ) * 10;
+
             },
           // Initialises the variables with data from .json and the apps version from the config.xml
             setup : function(callback) {
