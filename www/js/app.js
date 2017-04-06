@@ -38,6 +38,35 @@ app.run(function($ionicPlatform, cache, view, game) {
       if(window.StatusBar) {
         StatusBar.styleDefault();
       }
+
+      // Setup AdMob advertisement
+        // select the right Ad Id according to platform
+          var admobid = {};
+          if( /(android)/i.test(navigator.userAgent) ) { // for android & amazon-fireos
+            admobid = {
+              banner: 'ca-app-pub-5598297994391926/6062785296' // or DFP format "/6253334/dfp_example_ad"
+            };
+          } else if(/(ipod|iphone|ipad)/i.test(navigator.userAgent)) { // for ios
+            admobid = {
+              banner: 'ca-app-pub-5598297994391926/6062785296' // or DFP format "/6253334/dfp_example_ad"
+            };
+          } else { // for windows phone
+            admobid = {
+              banner: 'ca-app-pub-5598297994391926/6062785296' // or DFP format "/6253334/dfp_example_ad"
+            };
+          }
+        // Show ad banner
+          // it will display smart banner at top center, using the default options
+            var test = true;
+            if(window.AdMob) AdMob.createBanner({
+              adId: admobid.banner,
+              position: AdMob.AD_POSITION.TOP_CENTER,
+              autoShow: true,
+              isTesting: test
+            });
+            if (test)
+              alert("The advertisement is running in test mode.");
+
       // Initialise cache's variables
         cache.setup(function() {
           // Sets the view up
