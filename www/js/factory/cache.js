@@ -150,30 +150,33 @@
             getPoints : function() {return points;},
             calcPoints : function() {
               // Calculates points from needed clicks, from generator used clicks and difficulty
-               var userClicks    = interface.getClicks();
-               var targetClicks  = interface.getTargetClicks();
-               var dif           = interface.getDiff();
-               var size          = interface.getGameTable().length;
-               // Used for adjusting the root of the formula
-                var stretch       = 4*(dif+1)+4
-               // Used for moving the root along the axis
-               // -> How far player can miss the targetClicks and still get positive points
-               //    depends on gameTable size and targetClicks
-                var a = (size - 3) *5* targetClicks / 2 + (5 - size) *targetClicks / 4
-
-               // The formula is for 0 not defined
-                 if (userClicks == 0)
-                   userClicks = 0.9;
-
-               // Constants for calculations
-                 var b = 10;
-               // This formula assigns to every value of userClicks a value of points
-               // If userClicks is less than targetClicks + a points will be positive
-               // If userClicks is more than targetClicks + a points will be negative
-               // How big the difference between the points you get for x and x+1 clicks increases with the grade of difficulty
-                 return Math.round( ( (a+targetClicks) / (userClicks / stretch) - stretch) * (dif + 1) * b ) *10;
-                 // Old Formula; b=100, a=4
-                 // return Math.round(  ( (targetClicks/userClicks) - ( targetClicks / (targetClicks + (targetClicks/a)) ) ) * b * (dif+1)  ) * 10;
+                var userClicks    = interface.getClicks();
+                var targetClicks  = interface.getTargetClicks();
+                var dif           = interface.getDiff();
+                var size          = interface.getGameTable().length;
+              // Used for defining largest and smallest possible points
+              // Both values must be greater than zero
+                var max = 1000;
+                var min = 1000;
+              // Used for adjusting the gradient of the formula
+                var k = (1 - size + 5) / ( 2*max*  (targetClicks + size));
+              // Used for moving the root along the axis
+              // -> How far player can miss the targetClicks and still get positive points
+              //    depends on gameTable size, difficulty and targetClicks
+                var x = userClicks - targetClicks - 2 * (dif + 1) - (size - 3)*20;
+              // Constants for rounding points to multiple of 10
+                var b = 10;
+              // Constant for shifting calculated points towards positive numbers
+              // n < 0 points always positive
+              // n = 0 not defined
+              // n = 1 point calculation fair
+              // n > 1 point calculation shifted in favour of player
+              // n < 1 point calculation shifted not in favour of player
+                var n = 1;
+              // This formula assigns to every value of userClicks a value of points
+              // If userClicks is less than targetClicks + a points will be positive
+              // If userClicks is more than targetClicks + a points will be negative
+                return Math.floor( ( min * (max + min) ) / ( min + max * ℯ^( (max + min)*k*x) ) - min / n  ) * b;
 
             },
           // Initialises the variables with data from .json and the apps version from the config.xml
