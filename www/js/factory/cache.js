@@ -158,8 +158,6 @@
               // Both values must be greater than zero
                 var max = 1000;
                 var min = 1000;
-              // Used for adjusting the gradient of the formula
-                var k = (1 - size + 5) / ( 2*max*  (targetClicks + size));
               // Used for moving the root along the axis
               // -> How far player can miss the targetClicks and still get positive points
               //    depends on gameTable size, difficulty and targetClicks
@@ -173,10 +171,12 @@
               // n > 1 point calculation shifted in favour of player
               // n < 1 point calculation shifted not in favour of player
                 var n = 1;
+              // Used for adjusting the gradient of the formula
+                var k = (1 - size + 5) / ( 2*max*(targetClicks + size) );
               // This formula assigns to every value of userClicks a value of points
-              // If userClicks is less than targetClicks + a points will be positive
-              // If userClicks is more than targetClicks + a points will be negative
-                return Math.floor( ( min * (max + min) ) / ( min + max * ℯ^( (max + min)*k*x) ) - min / n  ) * b;
+              // If userClicks is less than x points will be positive
+              // If userClicks is more than x points will be negative
+                return Math.floor( ( ( min * (max + min) ) / ( min + max * Math.E**( (max + min)*k*x) ) ) - min / n  ) * b;
 
             },
           // Initialises the variables with data from .json and the apps version from the config.xml
