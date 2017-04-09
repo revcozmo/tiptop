@@ -50,6 +50,17 @@ $margin: 1vw;
   border-radius: 5%;
 }
 
+/* Winning Banner */
+#gameOver {
+  position: fixed !important;
+  z-index: 1000   !important;
+  width: auto     !important;
+  height: 35% !important;
+  top: 29.25%       !important; }
+#gameOverTitle {
+  font-size: 60px !important;
+  color: #ffffff  !important; }
+
 // Header
 .menuButton {
   margin-left: 2vw;
@@ -64,17 +75,6 @@ $margin: 1vw;
   font-weight:normal !important;
   font-size:40px !important;
 }
-
-#gameOver {
-  position: fixed !important;
-  z-index: 1000   !important;
-  width: auto     !important;
-  height: 40%     !important;
-  top: 20%        !important; }
-
-#gameOverTitle {
-  font-size: 60px !important;
-  color: #ffffff  !important; }
 
 /* Colors for side-menues */
 #light {
