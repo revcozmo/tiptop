@@ -1,16 +1,26 @@
 {
-  "txt" : [
-    "Wie funktioniert's?",
-    "Tippe auf die farbigen Knöpfe, um ihre Farbe zu ändern, und versuche alle gleich zu färben.",
-    "Aufgepasst. Das Tippen auf einen Knopf wechselt auch die Farbe seiner Nachbarn.",
+  "help" : {
+    "rules" : [
+      "Wie funktioniert's?",
+      "Tippe auf die farbigen Knöpfe, um ihre Farbe zu ändern, und versuche alle gleich zu färben.",
+      "Aufgepasst. Das Tippen auf einen Knopf wechselt auch die Farbe seiner Nachbarn."
+    ],
+    "about" : [
+      "Über die App",
+      "Autor",
+      "Version",
+      "Dank an",
+      "Wenn du meine App kommentieren möchtest oder noch eine Idee für mich hast, schreib' mir eine E-Mail an"
+    ],
+    "points" : [
+      "Punkte und Züge",
+      "Der Zähler in der Leiste am unteren Bildschirmrand zeigt entweder die Züge, die zum Lösen des Levels gebraucht wurden, oder die Punkte, die für das Lösen des Rätsels gewonnen werden können. Durch Tippen auf den Zähler wird zwischen Punkten und Zügen gewechselt.",
+      "Ziel ist es so wenig Züge wie möglich zu brauchen. Je weniger Züge zum Lösen des Rätsels benötigt werden, desto mehr Punkte können verdient werden. Die Punkte werden durch die gebrauchten Züge, der Schwierigkeitsgrad und die Spielfeldgröße berechnet. Negative Punkte sind auch möglich.",
+      "Du kannst deine Punkte mit dem Rest der Welt in der Rangliste vergleichen. Sie ist im Menü zu finden. Um ins Menü zu kommen musst du auf den Knopf über dem Spielfeld klicken."
+    ]
+  },
 
-    "Über die App",
-    "Autor",
-    "Version",
-    "Dank an",
-    "Wenn du meine App kommentieren möchtest oder noch eine Idee für mich hast, schreib' mir eine E-Mail an",
-
-
+  "settings" : [
     "Einstellungen",
     "Farbenblind"
   ],

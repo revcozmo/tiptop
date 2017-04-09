@@ -18,6 +18,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('rules', {
       url: '/help/rules',
       templateUrl: 'templates/help/rules.html'
+    })
+    .state('points', {
+      url: '/help/points',
+      templateUrl: 'templates/help/points.html'
     });
 
     $urlRouterProvider.otherwise("/help");

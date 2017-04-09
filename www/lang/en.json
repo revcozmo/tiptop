@@ -1,16 +1,26 @@
 {
-  "txt" : [
-    "How to play?",
-    "Just tap on the colored buttons to change their colors and try to color all buttons in the same one.",
-    "Be careful. Tapping on a button will also cause the change of its neighbours colors.",
+  "help" : {
+    "about" : [
+      "About the App",
+      "Author",
+      "Version",
+      "Thanks to",
+      "If you like to comment on my app or you have an idea for it, write me an e-mail to"
+    ],
+    "rules" : [
+      "How to play?",
+      "Just tap on the colored buttons to change their colors and try to color all buttons in the same one.",
+      "Be careful. Tapping on a button will also cause the change of its neighbours colors."
+    ],
+    "points" : [
+      "Points and Clicks",
+      "The counter in the bar at the bottom counts either the clicks it took you to solve the level or the points you earned by solving the level. You can switch between the two modes by tapping on the counter.",
+      "Try to solve the riddle with as little clicks as possible. The less clicks needed the more points can be won. The points you get are calculated from the points you needed, the difficlty and the amount of buttons. Negative points are also possible!",
+      "You can compare your own points with the rest of the world in the ranking. Click on the menu button above the riddle and you'll find it."
+    ]
+  },
 
-    "About the App",
-    "Author",
-    "Version",
-    "Thanks to",
-    "If you like to comment on my app or you have an idea for it, write me an e-mail to",
-
-
+  "settings" : [
     "Settings",
     "Color Blindness"
   ],

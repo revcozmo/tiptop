@@ -90,10 +90,10 @@
         </ion-side-menu>
 
         <!-- Settings -->
-        <!-- BUG : txt[i] must be static, variable does not work -->
+        <!-- BUG : settings[i] must be static, variable does not work -->
         <ion-side-menu side="right" class="screen settings">
           <ion-content id="{{appColor}}">
-            <h2 class="heading" >{{translation.txt[8]}}</h2>               <!-- i=8 -->
+            <h2 class="heading" >{{translation.settings[0]}}</h2>               <!-- i=8 -->
             <!-- Select difficulty -->
             <ion-radio ng-value       = "item.value"
                       ng-model       = "diffChoice"
@@ -120,7 +120,7 @@
                         toggle-class  = "toggle-assertive"
                         ng-repeat     = "item in blindList"
                         ng-click      = "blindChange(item.checked)">
-              {{translation.txt[9]}}
+              {{translation.settings[1]}}
             </ion-toggle>
             <br><br><br>
           </ion-content>
