@@ -16,23 +16,24 @@
   color: #ffffff !important; }
 
 /* GameTable */
-$gameTableWidth: 90vw;
+$gameTableWidth: 96vw;
 $padding: 2vw;
 $margin: 1vw;
 .size-3 {
+  margin: $margin;
   $buttons: 3;
   $buttonWidth: ( $gameTableWidth - $margin*2*$buttons - 2*$padding)/$buttons;
   width: $buttonWidth;
   height: $buttonWidth - 1vw;
 }
 .size-5 {
+  margin: $margin/2;
   $buttons: 5;
-  $buttonWidth: ( $gameTableWidth - $margin*2*$buttons - 2*$padding)/$buttons;
+  $buttonWidth: ( $gameTableWidth - $margin/2*2*$buttons - 2*$padding)/$buttons;
   width: $buttonWidth - 0.5vw;
   height: $buttonWidth - 0.5vw;
 }
 .gameButton {
-  margin: $margin;
   padding: 2px;
   border-radius: 5px;
 }
@@ -41,10 +42,11 @@ $margin: 1vw;
   padding: $padding;
   width: $gameTableWidth       !important;
   height: $gameTableWidth      !important;
-  margin: -50% 0% 0% -5%;
+  margin-top: -50%;
+  margin-left: -(100vw-$gameTableWidth)/2;
   position: absolute;
   top: 50%;
-  left: 10%;
+  left: (100vw-$gameTableWidth);
   border-radius: 5%;
 }
 

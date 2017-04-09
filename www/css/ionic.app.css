@@ -9834,26 +9834,28 @@ a.button {
 
 /* GameTable */
 .size-3 {
-  width: 26.66667vw;
-  height: 25.66667vw; }
+  margin: 1vw;
+  width: 28.66667vw;
+  height: 27.66667vw; }
 
 .size-5 {
-  width: 14.7vw;
-  height: 14.7vw; }
+  margin: 0.5vw;
+  width: 16.9vw;
+  height: 16.9vw; }
 
 .gameButton {
-  margin: 1vw;
   padding: 2px;
   border-radius: 5px; }
 
 .gameTable {
   padding: 2vw;
-  width: 90vw !important;
-  height: 90vw !important;
-  margin: -50% 0% 0% -5%;
+  width: 96vw !important;
+  height: 96vw !important;
+  margin-top: -50%;
+  margin-left: -2vw;
   position: absolute;
   top: 50%;
-  left: 10%;
+  left: 4vw;
   border-radius: 5%; }
 
 .menuButton {
