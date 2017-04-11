@@ -12,7 +12,7 @@
         $scope.modal.show();
       };
       $scope.closeModal = function() {
-        $scope.modal.remove();
+        $scope.modal.hide();
       };
       // Cleanup the modal when we're done with it!
         $scope.$on('$destroy', function() {
