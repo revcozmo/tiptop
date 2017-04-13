@@ -72,20 +72,13 @@ app.run(function($ionicPlatform, cache, view, game) {
               alert("The advertisement is running in test mode.");
 
       // Initialise Firebase Databases
-        try {
-          //var firebase = require("firebase");
-
-          var config = {
-            apiKey: "AIzaSyBS9pYLYgN7MIZDjsUATYlCXI-ZNRn-auw",
-            authDomain: "tiptop-5bc82.firebaseapp.com",
-            databaseURL: "https://tiptop-5bc82.firebaseio.com/",
-            storageBucket: "tiptop-5bc82.appspot.com"
-          };
-          firebase.initializeApp(config);
-          alert("Firebase Databases initialisation done");
-        } catch(error) {
-          alert("Firebase Databases initialisation: " + error);
-        }
+        var config = {
+          apiKey: "AIzaSyBS9pYLYgN7MIZDjsUATYlCXI-ZNRn-auw",
+          authDomain: "tiptop-5bc82.firebaseapp.com",
+          databaseURL: "https://tiptop-5bc82.firebaseio.com/",
+          storageBucket: "tiptop-5bc82.appspot.com"
+        };
+        firebase.initializeApp(config);
 
 
       // Initialise cache's variables
