@@ -1,5 +1,5 @@
 // Controls the $scope belonging to the popover menu
-  app.controller('menuCtrl', function($scope, $ionicModal, $ionicPopup, cache) {
+  app.controller('menuCtrl', function($scope, $ionicModal, $ionicPopup, cache, menu) {
     // Ranking Modal
       $ionicModal.fromTemplateUrl('templates/rankingModal.html', {
         scope: $scope,
@@ -40,7 +40,7 @@
           if (res == undefined || res == "")
             return;
 
-          alert("Name: " + res);
+          var nameNotTaken = menu.requireUsernameEntry(res);
 
         });
       }

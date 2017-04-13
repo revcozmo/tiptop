@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-var app = angular.module('app', ['ionic', 'ngCordova']);
+var app = angular.module('app', ['ionic', 'ngCordova', 'angularMoment']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -79,8 +79,7 @@ app.run(function($ionicPlatform, cache, view, game) {
           storageBucket: "tiptop-5bc82.appspot.com"
         };
         firebase.initializeApp(config);
-
-
+        
       // Initialise cache's variables
         cache.setup(function() {
           // Sets the view up
