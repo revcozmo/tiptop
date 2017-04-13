@@ -39,7 +39,7 @@
 
           if (res == undefined || res == "")
             return;
-
+            
           var nameNotTaken = menu.requireUsernameEntry(res);
 
         });
