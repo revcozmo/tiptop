@@ -72,10 +72,9 @@
               <div class     = "gameButton size-{{gameTable.length}}"
                    id        = "stable"
                    ng-repeat = "column in row">
-                <div  class     = "button button-{{column.color}}"
-                      ng-click  = "buttonHit({{column.pos}})"
-                      style     = "width: 100% !important; height: 100% !important;">
-                    <div class="{{colorToIcon(column.color)}}" style="{{iconVisibility}}"></div>
+                <div  class     = "inner-gameButton button button-{{column.color}}"
+                      ng-click  = "buttonHit({{column.pos}})">
+                    <div class="button-icon {{colorToIcon(column.color)}}" style="{{iconVisibility}}"></div>
                 </div>
               </div>
             </div>

@@ -9847,6 +9847,16 @@ a.button {
   padding: 2px;
   border-radius: 5px; }
 
+.inner-gameButton {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.button-icon {
+  font-size: 12vw; }
+
 .gameTable {
   padding: 2vw;
   width: 96vw !important;
