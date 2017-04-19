@@ -68,8 +68,7 @@ app.run(function($ionicPlatform, cache, view, game) {
               autoShow: true,
               isTesting: test
             });
-            if (test)
-              alert("The advertisement is running in test mode.");
+
 
       // Initialise Firebase Databases
         var config = {
@@ -79,7 +78,7 @@ app.run(function($ionicPlatform, cache, view, game) {
           storageBucket: "tiptop-5bc82.appspot.com"
         };
         firebase.initializeApp(config);
-        
+
       // Initialise cache's variables
         cache.setup(function() {
           // Sets the view up
@@ -99,5 +98,9 @@ app.run(function($ionicPlatform, cache, view, game) {
       console.log("Error in app.run() : " + error);
       alert("Error in app.run() : " + error);
     }
+
+    if (test)
+      alert("The advertisement is running in test mode.");
+
   });
 })
