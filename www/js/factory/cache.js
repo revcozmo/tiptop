@@ -157,7 +157,7 @@
               // Used for defining largest and smallest possible points
               // Both values must be greater than zero
                 var max = 1000;
-                var min = 1000;
+                var min = 999;
               // Used for moving the root along the axis
               // -> How far player can miss the targetClicks and still get positive points
               //    depends on gameTable size, difficulty and targetClicks
