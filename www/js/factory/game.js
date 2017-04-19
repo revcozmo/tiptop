@@ -20,7 +20,9 @@
                             interface.update();
                           } else {
                             // Caclulates the points player gained and adds them to total points
-                              cache.addPoints(cache.calcPoints());
+                              var wonPoints = cache.calcPoints();
+                              cache.addPoints(wonPoints);
+                              $rootScope.wonPoints   = wonPoints;
                               $rootScope.totalPoints = cache.getPoints();
                               console.log("Clicks/Target: " + cache.getClicks() + "/" + cache.getTargetClicks() );
                           }

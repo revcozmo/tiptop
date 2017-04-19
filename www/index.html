@@ -86,7 +86,7 @@
           <div id="gameOver" class="bar bar-{{appColor}} row button button-full" ng-click="levelRequest()" style="{{winBannerVisibility}}">
             <div class="col col-center">
               <h1 id="gameOverTitle" align="center">Tip Top!</h1>
-              <span class="text">{{totalPoints}}</span>
+              <span class="text" style="font-size:30px;">{{wonPoints >= 0 ? "+" : ""}}{{wonPoints}}</span>
             </div>
           </div>
         </ion-side-menu-content>
