@@ -9815,6 +9815,9 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
+/*
+ *  For centering some of the elements I used code from http://howtocenterincss.com/ (19.04.2017, 22:26)
+ */
 .screen {
   padding: 5px 5px 5px 5px !important;
   /*background-color: #00a01a; /*(old color)*/ }
@@ -9844,12 +9847,9 @@ a.button {
   height: 16.9vw; }
 
 .gameButton {
-  padding: 2px;
-  border-radius: 5px; }
-
-.inner-gameButton {
-  width: 100% !important;
-  height: 100% !important;
+  border-style: solid !important;
+  border-color: #f8f8f8 !important;
+  border-width: 0.75vw !important;
   display: flex;
   justify-content: center;
   align-items: center; }
@@ -9866,7 +9866,10 @@ a.button {
   position: absolute;
   top: 50%;
   left: 4vw;
-  border-radius: 5%; }
+  border-radius: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 /* Winning Banner */
 #gameOver {

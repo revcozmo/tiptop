@@ -67,14 +67,13 @@
 
           <!-- Game Content -->
           <div class="gameTable" id="{{appColor}}">
-            <div  class     = "row"
-                  ng-repeat = "row in gameTable">
-              <div class     = "gameButton size-{{gameTable.length}}"
-                   id        = "stable"
-                   ng-repeat = "column in row">
-                <div  class     = "inner-gameButton button button-{{column.color}}"
-                      ng-click  = "buttonHit({{column.pos}})">
-                    <div class="button-icon {{colorToIcon(column.color)}}" style="{{iconVisibility}}"></div>
+            <div>
+              <div  class     = "row"
+                    ng-repeat = "row in gameTable">
+                <div  class     = "gameButton button button-{{column.color}} size-{{gameTable.length}}"
+                      ng-click  = "buttonHit({{column.pos}})"
+                      ng-repeat = "column in row">
+                  <div class="button-icon {{colorToIcon(column.color)}}" style="{{iconVisibility}}"></div>
                 </div>
               </div>
             </div>
