@@ -25,7 +25,7 @@
           // var : buttonList
             getListDiff : function() {return buttonList.diffList;},
             getListLang : function() {return buttonList.langList;},
-            rmvList     : function() {buttonList = {};},
+            rmvList     : function() {buttonList.langList = {};},
           // var : cfg
             getAuthor  : function() {return cfg.author;},
             getEMail   : function() {return cfg.email;},
@@ -150,18 +150,19 @@
             getPoints : function() {return points;},
             calcPoints : function() {
               // Calculates points from needed clicks, from generator used clicks and difficulty
-                var userClicks    = interface.getClicks();
-                var targetClicks  = interface.getTargetClicks();
-                var dif           = interface.getDiff();
-                var size          = interface.getGameTable().length;
+                var userClicks     = interface.getClicks();
+                var targetClicks   = interface.getTargetClicks();
+                var diff           = parseInt(interface.getDiff());
+                var diffListLength = interface.getListDiff().length;
+                var size           = interface.getGameTable().length;
               // Used for defining largest and smallest possible points
               // Both values must be greater than zero
-                var max = 1000;
-                var min = 999;
+                var max = (10000) * (diff+1)/diffListLength;
+                var min = max - 1;
               // Used for moving the root along the axis
               // -> How far player can miss the targetClicks and still get positive points
               //    depends on gameTable size, difficulty and targetClicks
-                var x = userClicks - targetClicks - 2 * (dif + 1) - (size - 3)*20;
+                var x = userClicks - targetClicks - 2 * (diff + 1) - (size - 3)*20;
               // Constants for rounding points to multiple of 10
                 var b = 10;
               // Constant for shifting calculated points towards positive numbers
