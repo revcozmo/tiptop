@@ -91,7 +91,7 @@
             // The variable shuffles garantees that the amount of loops is random but based on the rule file
             //  shuffles causes the loop to be done between half of rules.clicks (rounded upwards) and rules.clicks; all values of shuffle are equaly probable
               var half     = rules.clicks/2;
-              var shuffles = Math.floor( ( Math.random() * (Math.floor(half) + 1) ) + Math.round(half) );
+              var shuffles = Math.round( ( Math.random() * half ) + half );
             for (var i = 1; i < shuffles+1; i++) {
               // Determine random position on gameTalbe
                 var x = Math.floor( Math.random() * rules.size );
