@@ -93,14 +93,15 @@ app.run(function($ionicPlatform, cache, view, game) {
               else
                 game.update();
             console.log("APP READY TO USE");
+
+            if (test)
+              alert("The advertisement is running in test mode.");
+              
           });
     } catch(error) {
       console.log("Error in app.run() : " + error);
       alert("Error in app.run() : " + error);
     }
-
-    if (test)
-      alert("The advertisement is running in test mode.");
 
   });
 })
