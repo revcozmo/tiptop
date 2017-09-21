@@ -90,11 +90,10 @@
         </ion-side-menu-content>
 
         <!-- Help -->
-        <ion-side-menu side="left" class="screen help">
-          <ion-content id="{{appColor}}">
-            <!-- Content organised in templates -> templates/help/ -->
-            <ion-nav-view><!-- Include template here --></ion-nav-view>
-          </ion-content>
+        <ion-side-menu side="left" class="screen help" id="{{appColor}}">
+          <!-- Content organised in templates -> templates/help/ -->
+          <!-- ion-nav-view may not be child of ion-content -->
+          <ion-nav-view><!-- Include template here --></ion-nav-view>
         </ion-side-menu>
 
         <!-- Settings -->
