@@ -44,7 +44,7 @@
         });
 
     // Sets new language
-      $scope.langChange = function(newLang) {console.log("Test");
+      $scope.langChange = function(newLang) {
         cache.setLang(newLang);
         view.update.lang();
       };
