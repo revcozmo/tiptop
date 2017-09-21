@@ -1,5 +1,5 @@
 // Controls the $scope not belonging to the game behaviour
-  app.controller('viewCtrl', function($scope, $rootScope, $ionicSlideBoxDelegate, $ionicSideMenuDelegate, $ionicPopup, $ionicPopover, $ionicModal, cache, view, tool) {
+  app.controller('viewCtrl', function($scope, $rootScope, $ionicSlideBoxDelegate, $ionicSideMenuDelegate, $ionicPopup, $ionicPopover, $ionicModal, $ionicConfig, cache, view, tool) {
     // Shows/Hides the settings and help screens
       $scope.showScreen = function(screen) {
           switch(screen) {
@@ -16,6 +16,9 @@
 
           cache.setScreen(screen);
       };
+
+    // Hide text of the ion-nav-back-button
+      $ionicConfig.backButton.text("");
 
     // Menu Popover
       $ionicPopover.fromTemplateUrl('templates/menuPopover.html', {
