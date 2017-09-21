@@ -9,5 +9,7 @@
   "gulpStartupTasks": [
     "sass",
     "watch"
-  ]
+  ],
+  "integrations": {},
+  "type": "ionic1"
 }
