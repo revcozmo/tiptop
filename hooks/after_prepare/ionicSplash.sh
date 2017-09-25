@@ -1,3 +1,3 @@
 # Generates splash screens from master version /resources/splash.png and saves them in /resources/platform/drawable-...
 # -> Ionic Documentation
-sudo ionic resources --splash
+sudo ionic cordova resources --splash
