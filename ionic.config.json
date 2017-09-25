@@ -10,6 +10,8 @@
     "sass",
     "watch"
   ],
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic1"
 }
