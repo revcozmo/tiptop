@@ -1,7 +1,7 @@
 # Installation of important programms
 
 # Install ngCordova
-bower install ngCordova
+bower --allow-root install ngCordova
 
 # Install cordova-icon
 # Docs https://www.npmjs.com/package/cordova-icon
