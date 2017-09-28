@@ -11,4 +11,11 @@ npm install cordova-icon -g
 # Docs https://www.npmjs.com/package/cordova-splash
 npm install cordova-splash -g
 
+# Plugins
+sudo -E cordova plugin add cordova-plugin-app-version
+sudo -E cordova plugin add cordova-plugin-admobpro
+sudo -E cordova plugin add cordova-plugin-splashscreen
+sudo -E cordova plugin add cordova-plugin-statusbar
+sudo -E cordova plugin add ionic-plugin-keyboard
+
 # SASS is missing
