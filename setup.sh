@@ -17,5 +17,6 @@ sudo -E cordova plugin add cordova-plugin-admobpro
 sudo -E cordova plugin add cordova-plugin-splashscreen
 sudo -E cordova plugin add cordova-plugin-statusbar
 sudo -E cordova plugin add ionic-plugin-keyboard
+sudo -E cordova plugin add cordova-plugin-file
 
 # SASS is missing

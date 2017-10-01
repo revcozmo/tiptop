@@ -6,7 +6,9 @@
         "cordova-android": "^6.2.3",
         "cordova-plugin-admobpro": "^2.29.23",
         "cordova-plugin-app-version": "^0.1.9",
+        "cordova-plugin-compat": "^1.2.0",
         "cordova-plugin-extension": "^1.5.2",
+        "cordova-plugin-file": "^4.3.3",
         "cordova-plugin-splashscreen": "^4.0.3",
         "cordova-plugin-statusbar": "^2.2.3",
         "firebase": "^3.7.6",
@@ -30,7 +32,8 @@
         "cordova-plugin-statusbar",
         "ionic-plugin-keyboard",
         "cordova-plugin-app-version",
-        "cordova-plugin-admobpro"
+        "cordova-plugin-admobpro",
+        "cordova-plugin-file"
     ],
     "cordovaPlatforms": [
         "android"
@@ -44,7 +47,8 @@
             "cordova-plugin-admobpro": {},
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {},
-            "ionic-plugin-keyboard": {}
+            "ionic-plugin-keyboard": {},
+            "cordova-plugin-file": {}
         }
     }
 }
